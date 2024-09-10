@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://6yuk1qnvfge0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ip5id"]
-[ext_resource type="PackedScene" uid="uid://du7gf6okqd7xd" path="res://wordpair/word_pair.tscn" id="1_rcb26"]
 [ext_resource type="PackedScene" uid="uid://cuf8vatop611e" path="res://file manager/file_manager.tscn" id="2_abvjp"]
+[ext_resource type="PackedScene" uid="uid://bi6fob6qdiqmv" path="res://word_pair_editor/word_pair_editor.tscn" id="2_o318c"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -21,54 +21,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+[node name="WordPairEditor" parent="VBoxContainer" instance=ExtResource("2_o318c")]
 layout_mode = 2
+size_flags_horizontal = 1
 size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="WordPair" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair2" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair3" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair4" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair5" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair6" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair7" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair8" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair9" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair10" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair11" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
-
-[node name="WordPair12" parent="VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_rcb26")]
-layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 10
 size_flags_stretch_ratio = 0.0
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
@@ -77,16 +38,22 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.22
 
 [node name="NewFileButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 text = "New File"
 
 [node name="OpenFileButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(140, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Open file"
+
+[node name="SwitchModeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Switch"
 
 [node name="FileManager" parent="." instance=ExtResource("2_abvjp")]
 

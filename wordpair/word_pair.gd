@@ -1,5 +1,8 @@
 extends HBoxContainer
 
+@onready var nat_word = $natural_word
+@onready var new_word = $new_word
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

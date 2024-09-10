@@ -14,5 +14,8 @@ size = Vector2i(700, 500)
 ok_button_text = "Open"
 file_mode = 1
 access = 2
+filters = PackedStringArray("*.tfwf")
+
+[node name="OpenedFiles" type="Node" parent="."]
 
 [connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]

@@ -11,5 +11,8 @@ func _process(delta):
 	pass
 
 
+
 func _on_open_file_button_pressed():
-	print(await $FileManager.open_file())
+	await $FileManager.open_files()
+	for file in $FileManager/OpenedFiles.get_children():
+		$VBoxContainer/WordPairEditor.add_words_file(file)

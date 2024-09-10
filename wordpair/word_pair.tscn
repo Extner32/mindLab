@@ -15,6 +15,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "natural word"
+select_all_on_focus = true
 
 [node name="new_word" type="LineEdit" parent="."]
 custom_minimum_size = Vector2(0, 100)
@@ -22,3 +23,4 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_previous = NodePath("../natural_word")
 placeholder_text = "new word"
+select_all_on_focus = true
