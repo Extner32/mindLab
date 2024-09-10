@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuf8vatop611e"]
+
+[ext_resource type="Script" path="res://file manager/file_manager.gd" id="1_yk35e"]
+
+[node name="FileManager" type="Node"]
+process_mode = 1
+script = ExtResource("1_yk35e")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+process_mode = 3
+title = "Open File(s)"
+position = Vector2i(210, 70)
+size = Vector2i(700, 500)
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+
+[connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]
