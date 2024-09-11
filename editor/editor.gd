@@ -23,15 +23,9 @@ extends Control
 
 
 func add_words_file(words_file):
-	var file = preload("res://word_pair_editor/editor_words_file.tscn").instantiate()
-	file.path = words_file.path
-	for i in range(len(words_file.wordpairs)):
-		file.wordpairs.append(words_file.wordpairs[i])
-		var wp = file.add_pair(words_file.wordpairs[i].nat_word, words_file.wordpairs[i].new_word)
-	$ScrollContainer/VBoxContainer.add_child(file)
-
-func add_pair():
-	var pair = preload("res://wordpair/word_pair.tscn").instantiate()
-	$ScrollContainer/VBoxContainer/WordPairs.add_child(pair)
+	var editor_words_file = preload("res://editor/editor_words_file.tscn").instantiate()
+	$ScrollContainer/EditorWordsFiles.add_child(editor_words_file)
+	editor_words_file.set_words_file(words_file)
 	
-	return pair
+	
+	return editor_words_file

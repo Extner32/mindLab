@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_ip5id"]
 [ext_resource type="PackedScene" uid="uid://cuf8vatop611e" path="res://file manager/file_manager.tscn" id="2_abvjp"]
-[ext_resource type="PackedScene" uid="uid://bi6fob6qdiqmv" path="res://editor/editor.tscn" id="2_ti8p7"]
+[ext_resource type="PackedScene" uid="uid://bi6fob6qdiqmv" path="res://word_pair_editor/word_pair_editor.tscn" id="2_o318c"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -21,8 +21,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Editor" parent="VBoxContainer" instance=ExtResource("2_ti8p7")]
+[node name="WordPairEditor" parent="VBoxContainer" instance=ExtResource("2_o318c")]
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
