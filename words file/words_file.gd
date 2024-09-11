@@ -1,6 +1,7 @@
 extends Node
 
 var wordpairs = []
+var path = ""
 
 
 class WordPair:
@@ -18,5 +19,6 @@ class WordPair:
 
 		
 func debug_print():
+	print(path)
 	for wp in wordpairs:
 		wp.debug_print()

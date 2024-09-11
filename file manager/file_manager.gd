@@ -35,6 +35,7 @@ func read_file(filepath):
 				history.append(true)
 				
 		file.wordpairs.append(file.WordPair.new(line[0], line[1], history))
+		file.path = filepath
 			
 	return file
 	
