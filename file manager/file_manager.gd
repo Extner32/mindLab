@@ -3,6 +3,8 @@ extends Node
 
 var open_files_path = []
 
+@onready var opened_files = $OpenedFiles
+
 func _ready():
 	$FileDialog.hide()
 	
@@ -35,7 +37,7 @@ func read_file(filepath):
 			elif bit == "1":
 				history.append(true)
 				
-		file.wordpairs.append(file.WordPair.new(line[0], line[1], history))
+		file.wordpairs.append(file.WordPair.new(line[0], line[1], history, filepath))
 		file.path = filepath
 			
 	return file
