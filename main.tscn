@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://6yuk1qnvfge0"]
+[gd_scene load_steps=5 format=3 uid="uid://6yuk1qnvfge0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ip5id"]
 [ext_resource type="PackedScene" uid="uid://cuf8vatop611e" path="res://file manager/file_manager.tscn" id="2_abvjp"]
 [ext_resource type="PackedScene" uid="uid://bi6fob6qdiqmv" path="res://editor/editor.tscn" id="2_ti8p7"]
+[ext_resource type="PackedScene" uid="uid://coo8e5vjcprxg" path="res://learning/learning.tscn" id="3_ktrdd"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -22,8 +23,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Editor" parent="VBoxContainer" instance=ExtResource("2_ti8p7")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Learning" parent="VBoxContainer" instance=ExtResource("3_ktrdd")]
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)

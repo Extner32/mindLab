@@ -18,4 +18,9 @@ filters = PackedStringArray("*.tfwf")
 
 [node name="OpenedFiles" type="Node" parent="."]
 
+[node name="FileOpenedDialog" type="AcceptDialog" parent="."]
+position = Vector2i(445, 275)
+size = Vector2i(200, 100)
+dialog_text = "File is already opened!"
+
 [connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]

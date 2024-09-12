@@ -21,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="FileName" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "<filepath>"
 

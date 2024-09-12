@@ -12,6 +12,7 @@ func open_filedialog():
 	$FileDialog.file_mode = 1
 	$FileDialog.current_dir = "/"
 	$FileDialog.show()
+		
 	get_tree().paused = true
 	await $FileDialog.files_selected
 	get_tree().paused = false
@@ -41,7 +42,16 @@ func read_file(filepath):
 	
 func open_files():
 	var filepaths = await open_filedialog()
+	
+	var opened_files = []
+	for file in $OpenedFiles.get_children():
+		opened_files.append(file.path.get_file())
+		
 	for filepath in filepaths:
-		$OpenedFiles.add_child(read_file(filepath))
+		if filepath.get_file() in opened_files:
+			$FileOpenedDialog.show()
+		else:
+			print("huh")
+			$OpenedFiles.add_child(read_file(filepath))
 
 	

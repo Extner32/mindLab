@@ -4,6 +4,7 @@ var file = null
 
 func link_words_file(words_file):
 	file = words_file
+	$VBoxContainer/FileName.text = file.path.get_file()
 	for i in range(len(words_file.wordpairs)):
 		add_pair(words_file.wordpairs[i].new_word, words_file.wordpairs[i].nat_word)
 
