@@ -21,11 +21,12 @@ extends Control
 			#await get_tree().process_frame
 			#$ScrollContainer.ensure_control_visible(new_pair)
 
+	
 
 func add_words_file(words_file):
 	var editor_words_file = preload("res://editor/editor_words_file.tscn").instantiate()
 	$ScrollContainer/EditorWordsFiles.add_child(editor_words_file)
-	editor_words_file.set_words_file(words_file)
+	editor_words_file.link_words_file(words_file)
 	
 	
 	return editor_words_file

@@ -23,6 +23,7 @@ grow_vertical = 2
 
 [node name="Editor" parent="VBoxContainer" instance=ExtResource("2_ti8p7")]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
