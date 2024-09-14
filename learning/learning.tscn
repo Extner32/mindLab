@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=8 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
 [ext_resource type="Texture2D" uid="uid://b14xecnkxobno" path="res://learning/start.png" id="2_4mvmt"]
+[ext_resource type="Script" path="res://learning/OneCycle.gd" id="3_77uqp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hkxv"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -86,7 +87,6 @@ size_flags_vertical = 3
 focus_mode = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
-text = "[bgcolor=green]test[/bgcolor]"
 scroll_following = true
 selection_enabled = true
 
@@ -94,5 +94,12 @@ selection_enabled = true
 initial_position = 2
 size = Vector2i(148, 100)
 dialog_text = "No opened files!"
+
+[node name="Modes" type="Node" parent="."]
+
+[node name="OneCycle" type="Node" parent="Modes"]
+script = ExtResource("3_77uqp")
+
+[node name="Repeat" type="Node" parent="Modes"]
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

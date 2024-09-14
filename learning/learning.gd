@@ -6,8 +6,6 @@ var learning = false
 @onready var prev_pairs = $VBoxContainer/PrevPairs
 @onready var answer = $VBoxContainer/HBoxContainer/Answer
 
-
-
 func combine_files(opened_files):
 	reset()
 	
@@ -24,9 +22,11 @@ func _process(delta):
 	if learning:
 		match UserSettings.learn_mode:
 			UserSettings.learn_modes.ONE_CYCLE:
-				await mode_one_cycle_step()
+				$Modes/OneCycle.step(all_wordpairs, wp_idx)
+				if Input.is_action_just_pressed("enter"):
+					wp_idx = $Modes/OneCycle.check(all_wordpairs, wp_idx)
 			UserSettings.learn_modes.REPEAT:
-				await mode_repeat_step()
+				pass
 			
 			
 
@@ -36,23 +36,6 @@ func learning_start():
 	reset()
 	$VBoxContainer/Bars/CorrectBar.max_value = len(all_wordpairs)
 	$VBoxContainer/Bars/WrongBar.max_value = len(all_wordpairs)
-	
-func mode_one_cycle_step():
-	if UserSettings.reversed_direction:
-		$VBoxContainer/HBoxContainer/Question.text = all_wordpairs[wp_idx].nat_word
-		await Input.is_action_just_pressed("enter")
-		if answer.text == all_wordpairs[wp_idx].new_word:
-			all_wordpairs[wp_idx].history.append(true)
-			prev_pairs.text = "[bgcolor="+UserSettings.correct_color.to_html()+"]"+all_wordpairs[wp_idx].nat_word+": "+all_wordpairs[wp_idx].new_word+"[/bgcolor]"+"\n"+prev_pairs.text
-		else:
-			all_wordpairs[wp_idx].history.append(false)
-			prev_pairs.text = "[bgcolor="+UserSettings.wrong_color.to_html()+"]"+all_wordpairs[wp_idx].nat_word+": "+answer.text+all_wordpairs[wp_idx].new_word+"[/bgcolor]"+"\n"+prev_pairs.text
-		
-		wp_idx += 1
-	
-	
-func mode_repeat_step():
-	pass
 
 func reset():
 	wp_idx = 0
