@@ -1,6 +1,6 @@
 extends Node
 
-var word_pair_height = 50
+var word_pair_height = 15
 var file_seperator = "@"
 
 
@@ -13,5 +13,5 @@ var learn_mode = learn_modes.ONE_CYCLE
 #one_cycle: go trough all words once
 #repeat: repeat all words until all are done
 
-var correct_color = Color(0, 1, 0)
-var wrong_color = Color(1, 0, 0)
+var correct_color = Color(0.2, 0.741, 0.470)
+var wrong_color = Color(0.670, 0.047, 0.325)

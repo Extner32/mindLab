@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuf8vatop611e"]
+[gd_scene load_steps=3 format=3 uid="uid://cuf8vatop611e"]
 
 [ext_resource type="Script" path="res://file manager/file_manager.gd" id="1_yk35e"]
+[ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="2_em32t"]
 
 [node name="FileManager" type="Node"]
 process_mode = 1
@@ -11,6 +12,7 @@ process_mode = 3
 title = "Open File(s)"
 initial_position = 2
 size = Vector2i(700, 500)
+theme = ExtResource("2_em32t")
 ok_button_text = "Open"
 file_mode = 1
 access = 2
@@ -20,7 +22,8 @@ filters = PackedStringArray("*.tfwf")
 
 [node name="FileOpenedDialog" type="AcceptDialog" parent="."]
 initial_position = 2
-size = Vector2i(200, 100)
+size = Vector2i(237, 100)
+theme = ExtResource("2_em32t")
 dialog_text = "File is already opened!"
 
 [connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]
