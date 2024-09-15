@@ -3,8 +3,16 @@
 [ext_resource type="Script" path="res://file manager/file_manager.gd" id="1_yk35e"]
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="2_em32t"]
 
-[node name="FileManager" type="Node"]
+[node name="FileManager" type="Control"]
 process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_yk35e")
 
 [node name="FileDialog" type="FileDialog" parent="."]
@@ -18,12 +26,23 @@ file_mode = 1
 access = 2
 filters = PackedStringArray("*.tfwf")
 
-[node name="OpenedFiles" type="Node" parent="."]
-
 [node name="FileOpenedDialog" type="AcceptDialog" parent="."]
 initial_position = 2
 size = Vector2i(237, 100)
 theme = ExtResource("2_em32t")
 dialog_text = "File is already opened!"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OpenedFiles" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]

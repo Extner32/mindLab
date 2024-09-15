@@ -25,11 +25,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Editor" parent="VBoxContainer" instance=ExtResource("2_ti8p7")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Learning" parent="VBoxContainer" instance=ExtResource("3_ktrdd")]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -38,10 +38,8 @@ layout_mode = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.0
 
-[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+[node name="FileManager" parent="VBoxContainer/HBoxContainer" instance=ExtResource("2_abvjp")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.22
 
 [node name="NewFileButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -60,7 +58,5 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Switch"
-
-[node name="FileManager" parent="." instance=ExtResource("2_abvjp")]
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/OpenFileButton" to="." method="_on_open_file_button_pressed"]

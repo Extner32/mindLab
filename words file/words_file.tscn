@@ -1,6 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqn58tx5ka2py"]
+[gd_scene load_steps=4 format=3 uid="uid://bqn58tx5ka2py"]
 
 [ext_resource type="Script" path="res://words file/words_file.gd" id="1_61l7c"]
+[ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_q77f5"]
+[ext_resource type="Texture2D" uid="uid://cyfvx4finfivn" path="res://close.png" id="3_1dlxp"]
 
-[node name="WordsFile" type="Node"]
+[node name="WordsFile" type="Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_q77f5")
 script = ExtResource("1_61l7c")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "filename"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+icon = ExtResource("3_1dlxp")

@@ -14,11 +14,11 @@ func check(all_wordpairs, wp_idx, parent):
 		
 		if answer.text == all_wordpairs[wp_idx].new_word:
 			all_wordpairs[wp_idx].history.append(true)
-			prev_pairs.text = "[bgcolor="+UserSettings.correct_color.to_html()+"]"+all_wordpairs[wp_idx].nat_word+": "+all_wordpairs[wp_idx].new_word+"[/bgcolor]"+"\n"+prev_pairs.text
+			prev_pairs.text = "[color="+UserSettings.correct_color.to_html()+"]"+all_wordpairs[wp_idx].nat_word+": "+all_wordpairs[wp_idx].new_word+"[/color]"+"\n"+prev_pairs.text
 			parent.correct_words += 1
 		else:
 			all_wordpairs[wp_idx].history.append(false)
-			prev_pairs.text = "[bgcolor="+UserSettings.wrong_color.to_html()+"]"+all_wordpairs[wp_idx].nat_word+": "+answer.text+": "+all_wordpairs[wp_idx].new_word+"[/bgcolor]"+"\n"+prev_pairs.text
+			prev_pairs.text = "[color="+UserSettings.wrong_color.to_html()+"]"+all_wordpairs[wp_idx].nat_word+": "+answer.text+"-> "+all_wordpairs[wp_idx].new_word+"[/color]"+"\n"+prev_pairs.text
 			parent.wrong_words += 1
 			
 		answer.text = ""

@@ -1,9 +1,10 @@
 class_name FileManager
-extends Node
+extends Control
 
 var open_files_path = []
+var opened_files_names = []
 
-@onready var opened_files = $OpenedFiles
+@onready var opened_files = $ScrollContainer/OpenedFiles
 
 func _ready():
 	$FileDialog.hide()
@@ -45,15 +46,15 @@ func read_file(filepath):
 func open_files():
 	var filepaths = await open_filedialog()
 	
-	var opened_files = []
-	for file in $OpenedFiles.get_children():
-		opened_files.append(file.path.get_file())
+	opened_files_names.clear()
+	for file in opened_files.get_children():
+		opened_files_names.append(file.path.get_file())
 		
 	for filepath in filepaths:
-		if filepath.get_file() in opened_files:
+		if filepath.get_file() in opened_files_names:
 			$FileOpenedDialog.show()
 		else:
 			print("huh")
-			$OpenedFiles.add_child(read_file(filepath))
+			opened_files.add_child(read_file(filepath))
 
 	
