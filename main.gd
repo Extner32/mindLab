@@ -6,3 +6,8 @@ func _on_open_file_button_pressed():
 		$VBoxContainer/Editor.add_words_file(file)
 		
 	$VBoxContainer/Learning.combine_files($VBoxContainer/HBoxContainer/FileManager.opened_files)
+
+
+
+func _on_file_manager_files_changed():
+	$VBoxContainer/Learning.combine_files($VBoxContainer/HBoxContainer/FileManager.opened_files)

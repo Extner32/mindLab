@@ -9,6 +9,7 @@ extends Node
 var first = "<empty>"
 var second = "<empty>"
 
+
 func step(all_wordpairs, wp_idx):
 	set_direction(all_wordpairs, wp_idx)
 		
@@ -24,12 +25,14 @@ func check(all_wordpairs, wp_idx):
 	else:
 		all_wordpairs[wp_idx].history.append(false)
 		prev_pairs.text = "[color="+UserSettings.wrong_color.to_html()+"]"+first+": "+answer.text+"-> "+second+"[/color]"+"\n"+prev_pairs.text
-		learn_parent.wrong_words += 1
 		
 	answer.text = ""
+		
+	if learn_parent.correct_words == len(all_wordpairs):
+		return -1
 	
 	if wp_idx+1 >=len(all_wordpairs):
-		return -1
+		return 0
 	
 	return wp_idx + 1
 

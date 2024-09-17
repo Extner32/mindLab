@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 UserSettings="*res://user_settings.gd"
 
+[debug]
+
+gdscript/warnings/unused_parameter=0
+
 [display]
 
 window/subwindows/embed_subwindows=false

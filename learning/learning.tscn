@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=9 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
 [ext_resource type="Script" path="res://learning/OneCycle.gd" id="3_77uqp"]
+[ext_resource type="Script" path="res://learning/EndScreen.gd" id="3_huqs1"]
+[ext_resource type="Script" path="res://learning/Repeat.gd" id="4_siwr2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hkxv"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -25,7 +27,7 @@ size_flags_vertical = 3
 theme = ExtResource("1_b3rfn")
 script = ExtResource("1_xqwy1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Tester" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,13 +35,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Bars" type="PanelContainer" parent="VBoxContainer"]
+[node name="Bars" type="PanelContainer" parent="Tester"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("1_b3rfn")
 
-[node name="CorrectBar" type="ProgressBar" parent="VBoxContainer/Bars"]
+[node name="CorrectBar" type="ProgressBar" parent="Tester/Bars"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -48,7 +50,7 @@ step = 1.0
 rounded = true
 show_percentage = false
 
-[node name="WrongBar" type="ProgressBar" parent="VBoxContainer/Bars"]
+[node name="WrongBar" type="ProgressBar" parent="Tester/Bars"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -59,33 +61,71 @@ rounded = true
 fill_mode = 1
 show_percentage = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Tester"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="Question" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Question" type="Label" parent="Tester/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 vertical_alignment = 1
 
-[node name="Answer" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Answer" type="LineEdit" parent="Tester/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "answer"
 
-[node name="StartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="StartButton" type="Button" parent="Tester/HBoxContainer"]
 layout_mode = 2
 text = "start"
 icon_alignment = 1
 
-[node name="PrevPairs" type="RichTextLabel" parent="VBoxContainer"]
+[node name="PrevPairs" type="RichTextLabel" parent="Tester"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
 scroll_following = true
 shortcut_keys_enabled = false
+
+[node name="EndScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_huqs1")
+
+[node name="Label" type="Label" parent="EndScreen"]
+layout_mode = 2
+text = "All done!"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EndScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EndScreen"]
+layout_mode = 2
+
+[node name="OkButton" type="Button" parent="EndScreen/HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Ok"
+
+[node name="RedoButton" type="Button" parent="EndScreen/HBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Restart"
 
 [node name="NoFilesDialog" type="AcceptDialog" parent="."]
 initial_position = 2
@@ -94,9 +134,15 @@ dialog_text = "No opened files!"
 
 [node name="Modes" type="Node" parent="."]
 
-[node name="OneCycle" type="Node" parent="Modes"]
+[node name="OneCycle" type="Node" parent="Modes" node_paths=PackedStringArray("learn_parent")]
 script = ExtResource("3_77uqp")
+learn_parent = NodePath("../..")
 
-[node name="Repeat" type="Node" parent="Modes"]
+[node name="Repeat" type="Node" parent="Modes" node_paths=PackedStringArray("learn_parent")]
+script = ExtResource("4_siwr2")
+learn_parent = NodePath("../..")
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Tester/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]
+[connection signal="pressed" from="EndScreen/HBoxContainer/OkButton" to="EndScreen" method="_on_ok_button_pressed"]
+[connection signal="pressed" from="EndScreen/HBoxContainer/RedoButton" to="EndScreen" method="_on_redo_button_pressed"]

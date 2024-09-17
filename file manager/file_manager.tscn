@@ -46,3 +46,4 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]
+[connection signal="child_exiting_tree" from="ScrollContainer/OpenedFiles" to="." method="_on_opened_files_child_exiting_tree"]

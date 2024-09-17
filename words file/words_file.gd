@@ -1,7 +1,11 @@
 extends Control
 
+var file_manager = null
 var wordpairs = []
 var path = ""
+
+func _ready():
+	$HBoxContainer/Label.text = path.get_file()
 
 
 class WordPair:
@@ -24,3 +28,7 @@ func debug_print():
 	print(path)
 	for wp in wordpairs:
 		wp.debug_print()
+
+
+func _on_button_pressed():
+	queue_free()

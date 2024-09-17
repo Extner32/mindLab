@@ -6,6 +6,8 @@ var opened_files_names = []
 
 @onready var opened_files = $ScrollContainer/OpenedFiles
 
+signal files_changed
+
 func _ready():
 	$FileDialog.hide()
 	
@@ -40,6 +42,7 @@ func read_file(filepath):
 				
 		file.wordpairs.append(file.WordPair.new(line[0], line[1], history, filepath))
 		file.path = filepath
+		file.file_manager = self
 			
 	return file
 	
@@ -57,4 +60,8 @@ func open_files():
 			print("huh")
 			opened_files.add_child(read_file(filepath))
 
-	
+
+#gets emitted when a file gets closed
+func _on_opened_files_child_exiting_tree(node):
+	await get_tree().create_timer(0.01).timeout
+	files_changed.emit()

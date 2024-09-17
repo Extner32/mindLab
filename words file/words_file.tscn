@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cyfvx4finfivn" path="res://close.png" id="3_1dlxp"]
 
 [node name="WordsFile" type="Control"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,8 +30,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "filename"
 vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
 
 [node name="Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(15, 15)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 icon = ExtResource("3_1dlxp")
+icon_alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
