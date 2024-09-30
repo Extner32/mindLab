@@ -4,6 +4,9 @@ extends Control
 var open_files_path = []
 var opened_files_names = []
 
+#used to store where the user last opened a file
+var last_file_path = "/"
+
 @onready var opened_files = $ScrollContainer/OpenedFiles
 
 signal files_changed
@@ -59,6 +62,11 @@ func open_files():
 		else:
 			print("huh")
 			opened_files.add_child(read_file(filepath))
+			last_file_path = filepath
+	
+	#.get_base_dir()
+	var pathfile = FileAccess.open(OS.get_executable_path(), FileAccess.WRITE)
+	pathfile.store_string(last_file_path)
 
 
 #gets emitted when a file gets closed
