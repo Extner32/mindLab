@@ -1,22 +1,21 @@
 extends VBoxContainer
 
-@onready var learning = $".."
 
 signal closed(restart)
 
-func show_results():
+func show_results(all_wordpairs, correct_words, wrong_words):
 	$RichTextLabel.text = ""
 	
-	var percent_correct = float(learning.correct_words)/float(len(learning.all_wordpairs)) * 100.0
+	var percent_correct = float(correct_words)/float(len(all_wordpairs)) * 100.0
 	percent_correct = snapped(percent_correct, 0.01)
 	
 	$RichTextLabel.text += "[b]"+"percent correct: "+str(percent_correct)+"%"+"[/b]"
 	$RichTextLabel.text += "\n"
 	
-	$RichTextLabel.text += "[color="+UserSettings.correct_color.to_html()+"]"+"correct words: "+str(learning.correct_words)+"[/color]"
+	$RichTextLabel.text += "[color="+UserSettings.correct_color.to_html()+"]"+"correct words: "+str(correct_words)+"[/color]"
 	$RichTextLabel.text += "\n"
 	
-	$RichTextLabel.text += "[color="+UserSettings.wrong_color.to_html()+"]"+"wrong words: "+str(learning.wrong_words)+"[/color]"
+	$RichTextLabel.text += "[color="+UserSettings.wrong_color.to_html()+"]"+"wrong words: "+str(wrong_words)+"[/color]"
 	show()
 
 

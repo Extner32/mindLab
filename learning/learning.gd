@@ -1,11 +1,8 @@
 extends Control
 
 var all_wordpairs = []
-var wp_idx = 0
 var learning = false
 
-var correct_words = 0
-var wrong_words = 0
 
 @onready var prev_pairs = $Tester/PrevPairs
 @onready var answer = $Tester/HBoxContainer/Answer
@@ -32,21 +29,8 @@ func combine_files(opened_files):
 			
 func _process(delta):
 	if learning:
-		$Tester/Bars/CorrectBar.value = correct_words
-		$Tester/Bars/WrongBar.value = wrong_words
-		match UserSettings.learn_mode:
-			UserSettings.learn_modes.ONE_CYCLE:
-				$Modes/OneCycle.step(all_wordpairs, wp_idx)
-				if Input.is_action_just_pressed("enter"):
-					var result = $Modes/OneCycle.check(all_wordpairs, wp_idx)
-					if result == -1: end()
-					else: wp_idx = result
-			UserSettings.learn_modes.REPEAT:
-				$Modes/Repeat.step(all_wordpairs, wp_idx)
-				if Input.is_action_just_pressed("enter"):
-					var result = $Modes/Repeat.check(all_wordpairs, wp_idx)
-					if result == -1: end()
-					else: wp_idx = result
+		get_learn_mode().update(delta)
+
 
 func learning_start():
 	if len(all_wordpairs) == 0:
@@ -54,29 +38,36 @@ func learning_start():
 		return
 	reset()
 	learning = true
-	all_wordpairs.shuffle()
 	
+	get_learn_mode().enter(all_wordpairs)
+
+
 	$Tester/Bars/CorrectBar.max_value = len(all_wordpairs)
 	$Tester/Bars/WrongBar.max_value = len(all_wordpairs)
 
 func reset():
 	learning = false
-	wp_idx = 0
 	$Tester/Bars/CorrectBar.value = 0
 	$Tester/Bars/WrongBar.value = 0
 	prev_pairs.text = ""
 	$Tester/HBoxContainer/Question.text = ""
 	$Tester/HBoxContainer/Answer.text = ""
-	correct_words = 0
-	wrong_words = 0
+	get_learn_mode().reset()
+	
+func get_learn_mode():
+	match UserSettings.learn_mode:
+		UserSettings.learn_modes.ONE_CYCLE:
+			return $Modes/OneCycle
+		UserSettings.learn_modes.REPEAT:
+			return $Modes/Repeat
 
 func _on_start_button_pressed():
 	learning_start()
 
-func end():
+func end(correct_words, wrong_words):
 	learning = false
 	$Tester.hide()
-	$EndScreen.show_results()
+	$EndScreen.show_results(all_wordpairs, correct_words, wrong_words)
 	reset()
 	await $EndScreen.closed
 

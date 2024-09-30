@@ -5,7 +5,7 @@ var open_files_path = []
 var opened_files_names = []
 
 #used to store where the user last opened a file
-var last_file_path = "/"
+var last_opened_dir = "/"
 
 @onready var opened_files = $ScrollContainer/OpenedFiles
 
@@ -17,8 +17,22 @@ func _ready():
 	
 
 func open_filedialog():
+	if not FileAccess.file_exists(UserSettings.get_file_path()):
+		var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.WRITE)
+		settings.store_string(last_opened_dir)
+		settings.close()
+		
+	var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.READ)
+	var lines = settings.get_as_text(true)
+	lines.split("\n")
+	last_opened_dir = lines[0]
+	
+		
+
+	
+	
 	$FileDialog.file_mode = 1
-	$FileDialog.current_dir = "/"
+	$FileDialog.current_dir = last_opened_dir
 	$FileDialog.show()
 		
 	get_tree().paused = true
@@ -29,6 +43,9 @@ func open_filedialog():
 func _on_file_dialog_files_selected(paths):
 	open_files_path = paths
 	
+#having to fix the crappy file dialog
+func _on_file_dialog_canceled():
+	$FileDialog.emit_signal("files_selected", [])
 	
 
 func read_file(filepath):
@@ -60,16 +77,17 @@ func open_files():
 		if filepath.get_file() in opened_files_names:
 			$FileOpenedDialog.show()
 		else:
-			print("huh")
 			opened_files.add_child(read_file(filepath))
-			last_file_path = filepath
+			last_opened_dir = filepath.get_base_dir()
 	
-	#.get_base_dir()
-	var pathfile = FileAccess.open(OS.get_executable_path(), FileAccess.WRITE)
-	pathfile.store_string(last_file_path)
+	var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.WRITE)
+	settings.store_string(last_opened_dir)
 
 
 #gets emitted when a file gets closed
 func _on_opened_files_child_exiting_tree(node):
 	await get_tree().create_timer(0.01).timeout
 	files_changed.emit()
+
+
+

@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
-[ext_resource type="Script" path="res://learning/OneCycle.gd" id="3_77uqp"]
 [ext_resource type="Script" path="res://learning/EndScreen.gd" id="3_huqs1"]
-[ext_resource type="Script" path="res://learning/Repeat.gd" id="4_siwr2"]
+[ext_resource type="Script" path="res://learning/modes/OneCycle.gd" id="4_8sbki"]
+[ext_resource type="Script" path="res://learning/modes/Repeat.gd" id="5_sr7gh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hkxv"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -86,7 +86,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
-scroll_following = true
 shortcut_keys_enabled = false
 
 [node name="EndScreen" type="VBoxContainer" parent="."]
@@ -134,13 +133,13 @@ dialog_text = "No opened files!"
 
 [node name="Modes" type="Node" parent="."]
 
-[node name="OneCycle" type="Node" parent="Modes" node_paths=PackedStringArray("learn_parent")]
-script = ExtResource("3_77uqp")
-learn_parent = NodePath("../..")
+[node name="OneCycle" type="Node" parent="Modes" node_paths=PackedStringArray("learning")]
+script = ExtResource("4_8sbki")
+learning = NodePath("../..")
 
-[node name="Repeat" type="Node" parent="Modes" node_paths=PackedStringArray("learn_parent")]
-script = ExtResource("4_siwr2")
-learn_parent = NodePath("../..")
+[node name="Repeat" type="Node" parent="Modes" node_paths=PackedStringArray("learning")]
+script = ExtResource("5_sr7gh")
+learning = NodePath("../..")
 
 [connection signal="pressed" from="Tester/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]
