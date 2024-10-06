@@ -1,34 +1,21 @@
+class_name WordsFile
 extends Control
 
 var file_manager = null
-var wordpairs = []
 var path = ""
+var wordpair_count = 0
 
 func _ready():
-	$HBoxContainer/Label.text = path.get_file()
+	$VBoxContainer/HBoxContainer/FileName.text = path.get_file()
 
+func add_pair(new_word, nat_word, history):
+	var pair = preload("res://words file/word_pair.tscn").instantiate()
+	pair.init(new_word, nat_word, history, path)
+	$VBoxContainer/Wordpairs.add_child(pair)
+	wordpair_count = $VBoxContainer/Wordpairs.get_child_count()
 
-class WordPair:
-	var new_word: String
-	var nat_word: String
-	var history: Array
-	var origin_path: String
-	
-	func _init(_new_word, _nat_word, _history, _origin_path):
-		new_word = _new_word
-		nat_word = _nat_word
-		history = _history
-		origin_path = origin_path
-		
-	func debug_print():
-		print(new_word, "@", nat_word, "@", history)
-
-		
-func debug_print():
-	print(path)
-	for wp in wordpairs:
-		wp.debug_print()
-
+func get_pair(idx):
+	$VBoxContainer/Wordpairs.get_child(idx)
 
 func _on_button_pressed():
 	queue_free()

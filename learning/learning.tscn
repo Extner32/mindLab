@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=8 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
@@ -11,9 +11,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds7nr"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxjba"]
-bg_color = Color(1, 0, 0, 1)
 
 [node name="Learning" type="Control"]
 layout_mode = 3
@@ -45,6 +42,7 @@ theme = ExtResource("1_b3rfn")
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_b3rfn")
 theme_override_styles/background = SubResource("StyleBoxFlat_6hkxv")
 step = 1.0
 rounded = true
@@ -54,8 +52,8 @@ show_percentage = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_b3rfn")
 theme_override_styles/background = SubResource("StyleBoxFlat_ds7nr")
-theme_override_styles/fill = SubResource("StyleBoxFlat_cxjba")
 step = 1.0
 rounded = true
 fill_mode = 1
@@ -68,8 +66,6 @@ layout_mode = 2
 [node name="Question" type="Label" parent="Tester/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 1
-vertical_alignment = 1
 
 [node name="Answer" type="LineEdit" parent="Tester/HBoxContainer"]
 layout_mode = 2
@@ -77,6 +73,7 @@ size_flags_horizontal = 3
 placeholder_text = "answer"
 
 [node name="StartButton" type="Button" parent="Tester/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "start"
 icon_alignment = 1

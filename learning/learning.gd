@@ -19,8 +19,8 @@ func combine_files(opened_files):
 	reset()
 	all_wordpairs.clear()
 	for file in opened_files.get_children():
-		for wp in file.wordpairs:
-			all_wordpairs.append(wp)
+		for i in range(file.wordpair_count):
+			all_wordpairs.append(file.get_pair(i))
 			
 	if len(all_wordpairs) != 0:
 		$Tester/Bars/CorrectBar.max_value = len(all_wordpairs)

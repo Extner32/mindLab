@@ -13,7 +13,7 @@ var settings_file_name = "UserSettings.dat"
 var reversed_direction = true
 
 enum learn_modes {ONE_CYCLE, REPEAT}
-var learn_mode = learn_modes.REPEAT
+var learn_mode = learn_modes.ONE_CYCLE
 #one_cycle: go trough all words once
 #repeat: repeat all words until all are done
 
