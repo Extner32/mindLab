@@ -2,29 +2,21 @@
 
 [ext_resource type="Script" path="res://words file/word_pair.gd" id="1_cfhog"]
 
-[node name="WordPair" type="Control"]
-layout_mode = 3
+[node name="WordPair" type="HBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_cfhog")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="NewWord" type="LineEdit" parent="HBoxContainer"]
+[node name="NewWord" type="LineEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "new word"
 
-[node name="NatWord" type="LineEdit" parent="HBoxContainer"]
+[node name="NatWord" type="LineEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "natural word"

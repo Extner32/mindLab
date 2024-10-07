@@ -24,10 +24,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FileManager" parent="VBoxContainer" instance=ExtResource("2_abvjp")]
+visible = false
 layout_mode = 2
 
 [node name="Learning" parent="VBoxContainer" instance=ExtResource("3_ktrdd")]
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -61,4 +61,6 @@ text = "Switch"
 
 [connection signal="files_changed" from="VBoxContainer/FileManager" to="." method="_on_file_manager_files_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewFileButton" to="." method="_on_new_file_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/OpenFileButton" to="." method="_on_open_file_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/SwitchModeButton" to="." method="_on_switch_mode_button_pressed"]

@@ -15,7 +15,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_yk35e")
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="OpenFileDialog" type="FileDialog" parent="."]
 process_mode = 3
 title = "Open File(s)"
 initial_position = 2
@@ -24,7 +24,17 @@ theme = ExtResource("2_em32t")
 ok_button_text = "Open"
 file_mode = 1
 access = 2
-filters = PackedStringArray("*.tfwf")
+filters = PackedStringArray("*.mLab")
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+process_mode = 3
+title = "New File"
+initial_position = 2
+size = Vector2i(700, 500)
+theme = ExtResource("2_em32t")
+ok_button_text = "Save"
+access = 2
+filters = PackedStringArray("*.mLab")
 
 [node name="FileOpenedDialog" type="AcceptDialog" parent="."]
 initial_position = 2
@@ -45,6 +55,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
-[connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]
-[connection signal="child_exiting_tree" from="ScrollContainer/OpenedFiles" to="." method="_on_opened_files_child_exiting_tree"]
+[connection signal="canceled" from="OpenFileDialog" to="." method="_on_open_file_dialog_canceled"]
+[connection signal="files_selected" from="OpenFileDialog" to="." method="_on_open_file_dialog_files_selected"]
+[connection signal="canceled" from="SaveFileDialog" to="." method="_on_save_file_dialog_canceled"]
+[connection signal="file_selected" from="SaveFileDialog" to="." method="_on_save_file_dialog_file_selected"]
