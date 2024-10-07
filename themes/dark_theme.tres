@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=19 format=3 uid="uid://bgr3x6jwhynme"]
 
-[ext_resource type="FontFile" uid="uid://cllq2talkpjey" path="res://IBMPlexMono-Regular.ttf" id="1_nje6u"]
+[ext_resource type="FontFile" uid="uid://cllq2talkpjey" path="res://assets/IBMPlexMono-Regular.ttf" id="1_nje6u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stugu"]
 content_margin_left = 10.0

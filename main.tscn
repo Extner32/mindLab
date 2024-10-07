@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://6yuk1qnvfge0"]
+[gd_scene load_steps=7 format=3 uid="uid://6yuk1qnvfge0"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_7tyyd"]
 [ext_resource type="Script" path="res://main.gd" id="1_ip5id"]
 [ext_resource type="PackedScene" uid="uid://cuf8vatop611e" path="res://file manager/file_manager.tscn" id="2_abvjp"]
 [ext_resource type="PackedScene" uid="uid://coo8e5vjcprxg" path="res://learning/learning.tscn" id="3_ktrdd"]
+[ext_resource type="Texture2D" uid="uid://syym5i27ajxj" path="res://assets/images/save_icon.png" id="5_0n1y7"]
+[ext_resource type="Texture2D" uid="uid://daxxcyqsadxn0" path="res://assets/images/switch.png" id="5_c45ke"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -24,11 +26,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FileManager" parent="VBoxContainer" instance=ExtResource("2_abvjp")]
-visible = false
 layout_mode = 2
 
-[node name="Learning" parent="VBoxContainer" instance=ExtResource("3_ktrdd")]
+[node name="Learning" parent="VBoxContainer" node_paths=PackedStringArray("file_manager") instance=ExtResource("3_ktrdd")]
+visible = false
 layout_mode = 2
+file_manager = NodePath("../FileManager")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
@@ -40,6 +43,7 @@ size_flags_stretch_ratio = 0.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Save"
+icon = ExtResource("5_0n1y7")
 
 [node name="NewFileButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
@@ -58,9 +62,15 @@ custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Switch"
+icon = ExtResource("5_c45ke")
+
+[node name="SaveTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [connection signal="files_changed" from="VBoxContainer/FileManager" to="." method="_on_file_manager_files_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/NewFileButton" to="." method="_on_new_file_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/OpenFileButton" to="." method="_on_open_file_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/SwitchModeButton" to="." method="_on_switch_mode_button_pressed"]
+[connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]

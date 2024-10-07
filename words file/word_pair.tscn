@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://58gsiikt2u17"]
+[gd_scene load_steps=3 format=3 uid="uid://58gsiikt2u17"]
 
 [ext_resource type="Script" path="res://words file/word_pair.gd" id="1_cfhog"]
+[ext_resource type="Texture2D" uid="uid://cyfvx4finfivn" path="res://assets/images/close.png" id="2_v5emo"]
 
 [node name="WordPair" type="HBoxContainer"]
 anchors_preset = 15
@@ -20,3 +21,11 @@ placeholder_text = "new word"
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "natural word"
+
+[node name="DeleteButton" type="Button" parent="."]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+icon = ExtResource("2_v5emo")
+icon_alignment = 1
+
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]

@@ -3,6 +3,8 @@ extends Control
 var all_wordpairs = []
 var learning = false
 
+@export var file_manager: Control
+
 
 @onready var prev_pairs = $Tester/PrevPairs
 @onready var answer = $Tester/HBoxContainer/Answer
@@ -68,6 +70,7 @@ func end(correct_words, wrong_words):
 	learning = false
 	$Tester.hide()
 	$EndScreen.show_results(all_wordpairs, correct_words, wrong_words)
+	file_manager.autosave()
 	reset()
 	await $EndScreen.closed
 

@@ -4,6 +4,7 @@ extends Control
 var file_manager = null
 var path = null
 var wordpair_count = 0
+var changed = false
 
 func _ready():
 	$HBoxContainer/FileName.text = path.get_file()
@@ -11,8 +12,9 @@ func _ready():
 func add_pair(new_word, nat_word, history):
 	var pair = preload("res://words file/word_pair.tscn").instantiate()
 	$Wordpairs.add_child(pair)
-	pair.init(new_word, nat_word, history, path)
+	pair.init(new_word, nat_word, history, path, self)
 	wordpair_count = $Wordpairs.get_child_count()
+	changed = true
 
 func get_pair(idx):
 	return $Wordpairs.get_child(idx)
@@ -33,9 +35,14 @@ func _process(delta):
 
 func _on_add_button_pressed():
 	add_pair("", "", [])
+	changed = true
 
 
 func _on_close_button_pressed():
 	file_manager.file_closed(self)
 	queue_free()
 	
+func pair_removed(pair):
+	print("deleted")
+	changed = true
+	wordpair_count -= 1

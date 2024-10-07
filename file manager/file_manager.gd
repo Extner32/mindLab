@@ -17,6 +17,18 @@ func _ready():
 	$OpenFileDialog.hide()
 	$SaveFileDialog.hide()
 	
+func check_files_changed():
+	var changed = false
+	for wordfile in opened_files.get_children():
+		if wordfile.changed == true:
+			changed = true
+			wordfile.changed = false
+	
+	if changed:
+		files_changed.emit()
+	
+	return changed
+	
 func open_filedialog():
 	if not FileAccess.file_exists(UserSettings.get_file_path()):
 		var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.WRITE)
@@ -26,13 +38,10 @@ func open_filedialog():
 	var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.READ)
 	var lines = settings.get_as_text(true)
 	lines.split("\n")
-	print(lines)
 	last_opened_dir = lines[0]
-	print(last_opened_dir)
 	
 	$OpenFileDialog.file_mode = 1
 	$OpenFileDialog.current_dir = last_opened_dir
-	print($OpenFileDialog.current_dir)
 	$OpenFileDialog.show()
 		
 	get_tree().paused = true
@@ -50,7 +59,6 @@ func save_filedialog():
 	return save_file_path
 
 func _on_open_file_dialog_files_selected(paths):
-	print("paths: ", paths)
 	open_files_path = paths
 	
 func _on_save_file_dialog_file_selected(path):
@@ -66,7 +74,6 @@ func _on_save_file_dialog_canceled():
 
 func new_file():
 	await save_filedialog()
-	print("save: ",save_file_path)
 	if save_file_path == "":
 		return
 	var wordsfile = preload("res://words file/words_file.tscn").instantiate()
@@ -81,7 +88,6 @@ func new_file():
 	save_file(wordsfile)
 	last_opened_dir = save_file_path
 	files_changed.emit()
-	
 
 func open_file(filepath):
 	var data = FileAccess.open(filepath, FileAccess.READ)
@@ -116,21 +122,24 @@ func save_file(words_file: WordsFile):
 		if line.new_word == "" and line.nat_word == "":
 			continue
 		var history_string = ""
-		print(line.history)
 		for bit in line.history:
 			if bit == true:
 				history_string += "1"
 			elif bit == false:
 				history_string += "0"
-		print(history_string)
 		file.store_csv_line(PackedStringArray([line.new_word, line.nat_word, history_string]), UserSettings.file_seperator)
 	
 	file.close()
-	
+
+
 func save_all_files():
 	for file in opened_files.get_children():
 		save_file(file)
-	
+
+func autosave():
+	if UserSettings.autosave:
+		save_all_files()
+
 func open_files():
 	var filepaths = await open_filedialog()
 		
