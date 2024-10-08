@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=10 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
 [ext_resource type="Script" path="res://learning/EndScreen.gd" id="3_huqs1"]
+[ext_resource type="Script" path="res://learning/Settings.gd" id="3_nrw6q"]
+[ext_resource type="Texture2D" uid="uid://i17ehsr34mbj" path="res://assets/images/settings.png" id="3_v03cb"]
 [ext_resource type="Script" path="res://learning/modes/OneCycle.gd" id="4_8sbki"]
 [ext_resource type="Script" path="res://learning/modes/Repeat.gd" id="5_sr7gh"]
 
@@ -78,6 +80,36 @@ layout_mode = 2
 text = "start"
 icon_alignment = 1
 
+[node name="SettingsButton" type="Button" parent="Tester/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+icon = ExtResource("3_v03cb")
+
+[node name="Settings" type="VBoxContainer" parent="Tester" node_paths=PackedStringArray("learning")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+script = ExtResource("3_nrw6q")
+learning = NodePath("../..")
+
+[node name="Label2" type="Label" parent="Tester/Settings"]
+layout_mode = 2
+text = "learn mode"
+
+[node name="HSlider2" type="HSlider" parent="Tester/Settings"]
+layout_mode = 2
+max_value = 1.0
+value = 1.0
+tick_count = 2
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Tester/Settings"]
+layout_mode = 2
+text = "Difficult words"
+
+[node name="HSlider" type="HSlider" parent="Tester/Settings"]
+layout_mode = 2
+
 [node name="PrevPairs" type="RichTextLabel" parent="Tester"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -126,6 +158,7 @@ text = "Restart"
 [node name="NoFilesDialog" type="AcceptDialog" parent="."]
 initial_position = 2
 size = Vector2i(170, 100)
+ok_button_text = "    OK    "
 dialog_text = "No opened files!"
 
 [node name="Modes" type="Node" parent="."]
@@ -139,6 +172,7 @@ script = ExtResource("5_sr7gh")
 learning = NodePath("../..")
 
 [connection signal="pressed" from="Tester/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Tester/HBoxContainer/SettingsButton" to="Tester/Settings" method="_on_settings_button_pressed"]
 [connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/OkButton" to="EndScreen" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/RedoButton" to="EndScreen" method="_on_redo_button_pressed"]

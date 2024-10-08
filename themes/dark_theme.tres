@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=19 format=3 uid="uid://bgr3x6jwhynme"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://bgr3x6jwhynme"]
 
 [ext_resource type="FontFile" uid="uid://cllq2talkpjey" path="res://assets/IBMPlexMono-Regular.ttf" id="1_nje6u"]
 
@@ -72,6 +72,37 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od7ko"]
+bg_color = Color(0.2, 0.2, 0.227451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwfok"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.2, 0.741176, 0.470588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hf1gy"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.137255, 0.137255, 0.156863, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o35sh"]
 content_margin_left = 15.0
@@ -190,6 +221,27 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ta2k5"]
+bg_color = Color(0.6, 0.6, 0.682353, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7g1m"]
+bg_color = Color(0.2, 0.741176, 0.470588, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bmi2"]
+bg_color = Color(0.6, 0.6, 0.682353, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [resource]
 AcceptDialog/styles/panel = SubResource("StyleBoxFlat_stugu")
 Button/colors/font_disabled_color = Color(0.670588, 0.0470588, 0.32549, 1)
@@ -199,6 +251,9 @@ Button/styles/focus = SubResource("StyleBoxFlat_qsdm3")
 Button/styles/hover = SubResource("StyleBoxFlat_7luci")
 Button/styles/normal = SubResource("StyleBoxFlat_c7ajh")
 Button/styles/pressed = SubResource("StyleBoxFlat_ckvnd")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_od7ko")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_kwfok")
+HSlider/styles/slider = SubResource("StyleBoxFlat_hf1gy")
 Label/fonts/font = ExtResource("1_nje6u")
 Label/styles/normal = SubResource("StyleBoxFlat_o35sh")
 LineEdit/fonts/font = ExtResource("1_nje6u")
@@ -212,5 +267,8 @@ ProgressBar/styles/background = SubResource("StyleBoxFlat_gdsm7")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_rhqdb")
 TextEdit/styles/focus = SubResource("StyleBoxFlat_8m04g")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_1my2c")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_ta2k5")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_i7g1m")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_1bmi2")
 Window/colors/title_color = Color(1, 1, 1, 1)
 Window/fonts/title_font = ExtResource("1_nje6u")

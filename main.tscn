@@ -17,60 +17,67 @@ grow_vertical = 2
 theme = ExtResource("1_7tyyd")
 script = ExtResource("1_ip5id")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="SaveTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FileManager" parent="VBoxContainer" instance=ExtResource("2_abvjp")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Learning" parent="VBoxContainer" node_paths=PackedStringArray("file_manager") instance=ExtResource("3_ktrdd")]
+[node name="FileManager" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_abvjp")]
+layout_mode = 2
+
+[node name="Learning" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("file_manager") instance=ExtResource("3_ktrdd")]
 visible = false
 layout_mode = 2
 file_manager = NodePath("../FileManager")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.0
 
-[node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "Save"
 icon = ExtResource("5_0n1y7")
 
-[node name="NewFileButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="NewFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 text = "New"
 
-[node name="OpenFileButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="OpenFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Open"
 
-[node name="SwitchModeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="SwitchModeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Switch"
 icon = ExtResource("5_c45ke")
 
-[node name="SaveTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-
-[connection signal="files_changed" from="VBoxContainer/FileManager" to="." method="_on_file_manager_files_changed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/NewFileButton" to="." method="_on_new_file_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/OpenFileButton" to="." method="_on_open_file_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/SwitchModeButton" to="." method="_on_switch_mode_button_pressed"]
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
+[connection signal="files_changed" from="MarginContainer/VBoxContainer/FileManager" to="." method="_on_file_manager_files_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NewFileButton" to="." method="_on_new_file_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OpenFileButton" to="." method="_on_open_file_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SwitchModeButton" to="." method="_on_switch_mode_button_pressed"]

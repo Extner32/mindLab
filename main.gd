@@ -1,7 +1,7 @@
 extends Control
 
-@onready var file_manager = $VBoxContainer/FileManager
-@onready var learning = $VBoxContainer/Learning
+@onready var file_manager = $MarginContainer/VBoxContainer/FileManager
+@onready var learning = $MarginContainer/VBoxContainer/Learning
 
 func _ready():
 	$SaveTimer.wait_time = UserSettings.save_timer

@@ -33,6 +33,9 @@ func _process(delta):
 		
 
 
+func _on_hide_button_pressed():
+	$Wordpairs.visible = !$Wordpairs.visible
+
 func _on_add_button_pressed():
 	add_pair("", "", [])
 	changed = true
@@ -46,3 +49,5 @@ func pair_removed(pair):
 	print("deleted")
 	changed = true
 	wordpair_count -= 1
+
+
