@@ -6,6 +6,10 @@ extends Control
 func _ready():
 	$SaveTimer.wait_time = UserSettings.save_timer
 	get_tree().auto_accept_quit = false
+	for arg in OS.get_cmdline_args():
+		if arg.get_extension() == "mLab":
+			file_manager.open_file(arg)
+	
 
 func _on_file_manager_files_changed():
 	learning.combine_files(file_manager.opened_files)
