@@ -30,15 +30,7 @@ func check_files_changed():
 	return changed
 	
 func open_filedialog():
-	if not FileAccess.file_exists(UserSettings.get_file_path()):
-		var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.WRITE)
-		settings.store_string(last_opened_dir)
-		settings.close()
-		
-	var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.READ)
-	var lines = settings.get_as_text(true)
-	lines.split("\n")
-	last_opened_dir = lines[0]
+
 	
 	$OpenFileDialog.file_mode = 1
 	$OpenFileDialog.current_dir = last_opened_dir

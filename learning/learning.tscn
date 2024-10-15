@@ -86,7 +86,6 @@ layout_mode = 2
 icon = ExtResource("3_v03cb")
 
 [node name="Settings" type="VBoxContainer" parent="Tester" node_paths=PackedStringArray("learning")]
-visible = false
 layout_mode = 2
 size_flags_vertical = 0
 script = ExtResource("3_nrw6q")
@@ -105,10 +104,14 @@ ticks_on_borders = true
 
 [node name="Label" type="Label" parent="Tester/Settings"]
 layout_mode = 2
-text = "Difficult words"
+text = "Difficulty"
 
 [node name="HSlider" type="HSlider" parent="Tester/Settings"]
 layout_mode = 2
+
+[node name="FilterWPTimer" type="Timer" parent="Tester/Settings"]
+wait_time = 0.2
+autostart = true
 
 [node name="PrevPairs" type="RichTextLabel" parent="Tester"]
 layout_mode = 2
@@ -173,6 +176,8 @@ learning = NodePath("../..")
 
 [connection signal="pressed" from="Tester/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Tester/HBoxContainer/SettingsButton" to="Tester/Settings" method="_on_settings_button_pressed"]
+[connection signal="drag_ended" from="Tester/Settings/HSlider" to="Tester/Settings" method="_on_h_slider_drag_ended"]
+[connection signal="timeout" from="Tester/Settings/FilterWPTimer" to="Tester/Settings" method="_on_filter_wp_timer_timeout"]
 [connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/OkButton" to="EndScreen" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/RedoButton" to="EndScreen" method="_on_redo_button_pressed"]

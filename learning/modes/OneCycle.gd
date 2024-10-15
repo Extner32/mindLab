@@ -19,7 +19,7 @@ var wrong_words = 0
 var waiting = false
 
 func enter(all_wordpairs):
-	wordpairs = all_wordpairs.duplicate(true)
+	wordpairs = learning.filter_wordpairs()
 	wordpairs.shuffle()
 	
 	
