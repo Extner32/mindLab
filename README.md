@@ -10,3 +10,12 @@
 - unzip the .zip file
 - double click the .exe file to open
 - it might tell you that the file is a threat. That's because you need to buy a license from microsoft in order for your program to not be marked a a threat by Windows.
+
+## to make windows automatically open a .mLab file in mindLab
+- right click a .mLab file (doesn't matter what the file contents are)
+- click "open with"
+- click "choose another app"
+- scroll all the way down and click "choose an app on your pc"
+- go to where you installed mindlab
+- select the mindLab exe ("mindLab.exe")
+- click "always"
