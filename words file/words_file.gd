@@ -5,6 +5,7 @@ var file_manager = null
 var path = null
 var wordpair_count = 0
 var changed = false
+var focused_pair = null
 
 func _ready():
 	$HBoxContainer/FileName.text = path.get_file()
@@ -23,12 +24,17 @@ func _process(delta):
 	var wordpairs = $Wordpairs.get_children()
 	for i in range(len(wordpairs)):
 		if wordpairs[i].nat_word_line.has_focus():
+			focused_pair = wordpairs[i]
 			if Input.is_action_just_pressed("enter"):
 				if i == (wordpair_count-1): 
 					add_pair("", "", [])
 					$Wordpairs.get_child(i+1).new_word_line.grab_focus()
+					focused_pair = $Wordpairs.get_child(i+1)
 				else: 
 					$Wordpairs.get_child(i+1).new_word_line.grab_focus()
+					focused_pair = $Wordpairs.get_child(i+1)
+		else:
+			focused_pair = null
 		
 		
 

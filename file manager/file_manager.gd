@@ -15,6 +15,11 @@ func _ready():
 	$OpenFileDialog.hide()
 	$SaveFileDialog.hide()
 	
+func _process(delta):
+	for wordfile in opened_files.get_children():
+		if wordfile.focused_pair != null:
+			$ScrollContainer.ensure_control_visible(wordfile.focused_pair)
+	
 func check_files_changed():
 	var changed = false
 	for wordfile in opened_files.get_children():

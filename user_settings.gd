@@ -39,7 +39,6 @@ func load_settings():
 		dict[keys[i]] = settings.get_var()
 		i += 1
 
-	print(dict)
 	settings.close()
 	
 func save_settings():
