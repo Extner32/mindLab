@@ -4,7 +4,8 @@ extends Control
 @onready var learning = $MarginContainer/VBoxContainer/Learning
 
 func _ready():
-	$SaveTimer.wait_time = UserSettings.save_timer
+	UserSettings.load_settings()
+	$SaveTimer.wait_time = UserSettings.dict["save_timer"]
 	get_tree().auto_accept_quit = false
 	for arg in OS.get_cmdline_args():
 		if arg.get_extension() == "mLab":
@@ -21,6 +22,7 @@ func _on_new_file_button_pressed():
 
 func _on_save_button_pressed():
 	file_manager.save_all_files()
+	UserSettings.save_settings()
 	
 func _on_open_file_button_pressed():
 	await file_manager.open_files()
@@ -36,6 +38,7 @@ func _on_switch_mode_button_pressed():
 
 func _on_save_timer_timeout():
 	file_manager.autosave()
+	UserSettings.save_settings()
 
 #called when the closed
 func _notification(what: int) -> void:

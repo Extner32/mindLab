@@ -113,6 +113,10 @@ layout_mode = 2
 wait_time = 0.2
 autostart = true
 
+[node name="CheckButton" type="CheckButton" parent="Tester/Settings"]
+layout_mode = 2
+text = "reversed word direction"
+
 [node name="PrevPairs" type="RichTextLabel" parent="Tester"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -178,6 +182,7 @@ learning = NodePath("../..")
 [connection signal="pressed" from="Tester/HBoxContainer/SettingsButton" to="Tester/Settings" method="_on_settings_button_pressed"]
 [connection signal="drag_ended" from="Tester/Settings/HSlider" to="Tester/Settings" method="_on_h_slider_drag_ended"]
 [connection signal="timeout" from="Tester/Settings/FilterWPTimer" to="Tester/Settings" method="_on_filter_wp_timer_timeout"]
+[connection signal="toggled" from="Tester/Settings/CheckButton" to="Tester/Settings" method="_on_check_button_toggled"]
 [connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/OkButton" to="EndScreen" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/RedoButton" to="EndScreen" method="_on_redo_button_pressed"]

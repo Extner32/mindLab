@@ -52,16 +52,16 @@ func check_answer():
 		
 	idx += 1
 	answer.text = ""
-	
+	UserSettings.dict["words_all_time"] += 1
 
 func get_question():
-	if UserSettings.reversed_direction:
+	if UserSettings.dict["reversed_direction"]:
 		return wordpairs[idx].nat_word
 	else:
 		return wordpairs[idx].new_word
 	
 func get_correct_answer():
-	if UserSettings.reversed_direction:
+	if UserSettings.dict["reversed_direction"]:
 		return wordpairs[idx].new_word
 	else:
 		return wordpairs[idx].nat_word

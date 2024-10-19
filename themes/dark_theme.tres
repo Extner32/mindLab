@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://bgr3x6jwhynme"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://bgr3x6jwhynme"]
 
 [ext_resource type="FontFile" uid="uid://cllq2talkpjey" path="res://assets/IBMPlexMono-Regular.ttf" id="1_nje6u"]
 
@@ -68,6 +68,28 @@ content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
 bg_color = Color(0.137255, 0.137255, 0.156863, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4cy0"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.2, 0.741176, 0.470588, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5d82"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.2, 0.2, 0.227451, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -251,6 +273,8 @@ Button/styles/focus = SubResource("StyleBoxFlat_qsdm3")
 Button/styles/hover = SubResource("StyleBoxFlat_7luci")
 Button/styles/normal = SubResource("StyleBoxFlat_c7ajh")
 Button/styles/pressed = SubResource("StyleBoxFlat_ckvnd")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_s4cy0")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_s5d82")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_od7ko")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_kwfok")
 HSlider/styles/slider = SubResource("StyleBoxFlat_hf1gy")

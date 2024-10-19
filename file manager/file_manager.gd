@@ -6,8 +6,6 @@ var save_file_path = ""
 
 var opened_files_names = []
 
-#used to store where the user last opened a file
-var last_opened_dir = "/"
 
 @onready var opened_files = $ScrollContainer/OpenedFiles
 
@@ -33,7 +31,7 @@ func open_filedialog():
 
 	
 	$OpenFileDialog.file_mode = 1
-	$OpenFileDialog.current_dir = last_opened_dir
+	$OpenFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
 	$OpenFileDialog.show()
 		
 	get_tree().paused = true
@@ -42,7 +40,7 @@ func open_filedialog():
 	return open_files_path
 
 func save_filedialog():
-	$SaveFileDialog.current_dir = last_opened_dir
+	$SaveFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
 	$SaveFileDialog.show()
 		
 	get_tree().paused = true
@@ -78,7 +76,7 @@ func new_file():
 	opened_files_names.append(wordsfile.path)
 	
 	save_file(wordsfile)
-	last_opened_dir = save_file_path
+	UserSettings.last_opened_dir = save_file_path
 	files_changed.emit()
 
 func open_file(filepath):
@@ -129,7 +127,7 @@ func save_all_files():
 		save_file(file)
 
 func autosave():
-	if UserSettings.autosave:
+	if UserSettings.dict["autosave"]:
 		save_all_files()
 
 func open_files():
@@ -140,10 +138,7 @@ func open_files():
 			$FileOpenedDialog.show()
 		else:
 			open_file(filepath)
-			last_opened_dir = filepath
-			
-	var settings = FileAccess.open(UserSettings.get_file_path(), FileAccess.WRITE)
-	settings.store_string(last_opened_dir)
+			UserSettings.dict["last_opened_dir"] = filepath
 
 
 func file_closed(file):
