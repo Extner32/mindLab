@@ -46,9 +46,10 @@ func check_answer():
 		wordpairs[idx].history.append(true)
 		correct_bar.value = correct_words
 		wordpairs.pop_at(idx)
+		wordpairs.shuffle()
 		
 	else: #wrong
-		prev_pairs.text = "[color="+UserSettings.wrong_color.to_html(false)+"]"+get_question()+"	"+answer.text+" → "+get_correct_answer()+"[/color]"+"\n"+prev_pairs.text
+		prev_pairs.text = "[color="+UserSettings.wrong_color.to_html(false)+"]"+get_question()+" "+answer.text+" → "+get_correct_answer()+"[/color]"+"\n"+prev_pairs.text
 		wordpairs[idx].history.append(false)
 		wrong_words += 1
 		

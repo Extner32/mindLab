@@ -10,6 +10,8 @@ show origin file when hovering over a word in learn mode
 
 show word count per file
 
+go to current asked word when switching from learn mode to edit mode
+
 
 
 FIXES:
@@ -20,5 +22,3 @@ open files in condensed view (if there are more than one files)
 auto delete wordpair when empty and backspace is pressed
 
 turn start button into stop button when started
-
-allow wp editing while practicing (without restarting completely)

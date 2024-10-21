@@ -48,7 +48,7 @@ func check_answer():
 		
 		
 	else: #wrong
-		prev_pairs.text = "[color="+UserSettings.wrong_color.to_html(false)+"]"+get_question()+"	"+answer.text+" → "+get_correct_answer()+"[/color]"+"\n"+prev_pairs.text
+		prev_pairs.text = "[color="+UserSettings.wrong_color.to_html(false)+"]"+get_question()+" "+answer.text+" → "+get_correct_answer()+"[/color]"+"\n"+prev_pairs.text
 		wrong_words += 1
 		wordpairs[idx].history.append(false)
 		wrong_bar.value = wrong_words
