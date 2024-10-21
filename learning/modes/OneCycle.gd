@@ -15,6 +15,7 @@ var wordpairs = []
 var idx = 0
 var correct_words = 0
 var wrong_words = 0
+var total_words = 0
 
 var waiting = false
 
@@ -34,7 +35,7 @@ func update(delta):
 			waiting = false
 			
 		if idx >= len(wordpairs):
-			learning.end(correct_words, wrong_words)
+			learning.end(total_words, correct_words, wrong_words)
 	
 	
 func check_answer():
@@ -52,7 +53,7 @@ func check_answer():
 		wordpairs[idx].history.append(false)
 		wrong_bar.value = wrong_words
 		
-		
+	total_words += 1
 	idx += 1
 	answer.text = ""
 	UserSettings.dict["words_all_time"] += 1
@@ -75,4 +76,5 @@ func reset():
 	idx = 0
 	correct_words = 0
 	wrong_words = 0
+	total_words = 0
 	waiting = false

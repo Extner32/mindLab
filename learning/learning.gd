@@ -93,10 +93,10 @@ func filter_wordpairs_count():
 func _on_start_button_pressed():
 	learning_start()
 
-func end(correct_words, wrong_words):
+func end(total_words, correct_words, wrong_words):
 	learning = false
 	$Tester.hide()
-	$EndScreen.show_results(all_wordpairs, correct_words, wrong_words)
+	$EndScreen.show_results(total_words, correct_words, wrong_words)
 	file_manager.autosave()
 	reset()
 	await $EndScreen.closed

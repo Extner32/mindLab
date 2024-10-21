@@ -3,10 +3,11 @@ extends VBoxContainer
 
 signal closed(restart)
 
-func show_results(all_wordpairs, correct_words, wrong_words):
+func show_results(total_words, correct_words, wrong_words):
+	
 	$RichTextLabel.text = ""
 	
-	var percent_correct = float(correct_words)/float(len(all_wordpairs)) * 100.0
+	var percent_correct = float(correct_words)/float(total_words) * 100.0
 	percent_correct = snapped(percent_correct, 0.01)
 	
 	$RichTextLabel.text += "[b]"+"percent correct: "+str(percent_correct)+"%"+"[/b]"

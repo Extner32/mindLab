@@ -1,0 +1,24 @@
+NEW FEATURES:
+
+make an actual settings menu
+
+flashcard mode, click to reveal answer, ask user if the got it correct
+
+ask (for n != 0 3n else 1) times when the user gets it wrong
+
+show origin file when hovering over a word in learn mode
+
+show word count per file
+
+
+
+FIXES:
+remove whitespace before and after words (learn and edit)
+
+open files in condensed view (if there are more than one files)
+
+auto delete wordpair when empty and backspace is pressed
+
+turn start button into stop button when started
+
+allow wp editing while practicing (without restarting completely)
