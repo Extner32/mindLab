@@ -27,16 +27,28 @@ func get_pair(idx):
 func _process(delta):
 	var wordpairs = $Wordpairs.get_children()
 	for i in range(len(wordpairs)):
-		if wordpairs[i].nat_word_line.has_focus():
+		if wordpairs[i].nat_word_line.has_focus() or wordpairs[i].new_word_line.has_focus():
 			focused_pair = wordpairs[i]
+			
 			if Input.is_action_just_pressed("enter"):
 				if i == (wordpair_count-1): 
 					add_pair("", "", [])
 					$Wordpairs.get_child(i+1).new_word_line.grab_focus()
 					focused_pair = $Wordpairs.get_child(i+1)
-				else: 
-					$Wordpairs.get_child(i+1).new_word_line.grab_focus()
-					focused_pair = $Wordpairs.get_child(i+1)
+				else:
+					var pair = $Wordpairs.get_child(i+1)
+					pair.new_word_line.grab_focus()
+					pair.new_word_line.caret_column = len(pair.new_word_line.text)
+					focused_pair = pair
+					
+			if Input.is_action_just_pressed("delete") and $Wordpairs.get_child(i).nat_word_line.text == "":
+				$Wordpairs.get_child(i).delete()
+				if i != 0:
+					var pair =  $Wordpairs.get_child(i-1)
+					pair.nat_word_line.grab_focus()
+					pair.nat_word_line.caret_column = len(pair.nat_word_line.text)
+					focused_pair = pair
+					
 		else:
 			focused_pair = null
 			

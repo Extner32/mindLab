@@ -30,8 +30,6 @@ func _process(delta):
 	if nat_word_line.has_focus() and nat_word_line.text == "" and Input.is_action_just_pressed("backspace"):
 		new_word_line.grab_focus()
 		
-	if new_word_line.has_focus() and new_word_line.text == "" and Input.is_action_just_pressed("backspace"):
-		delete()
 	
 	var rect = Rect2(global_position, size)
 	$DeleteButton.visible = rect.has_point(get_global_mouse_position()) or new_word_line.has_focus() or nat_word_line.has_focus()

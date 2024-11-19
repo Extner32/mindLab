@@ -10,6 +10,7 @@ show origin file when hovering over a word in learn mode
 
 go to current asked word when switching from learn mode to edit mode
 
+show total learned words
 
 
 FIXES:

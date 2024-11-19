@@ -16,11 +16,13 @@ script = ExtResource("1_cfhog")
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "new word"
+caret_blink = true
 
 [node name="NatWord" type="LineEdit" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "natural word"
+caret_blink = true
 
 [node name="DeleteButton" type="Button" parent="."]
 custom_minimum_size = Vector2(42, 42)
