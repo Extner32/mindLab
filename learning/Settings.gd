@@ -18,7 +18,7 @@ func _process(delta):
 
 	UserSettings.learn_mode = learn_modes[$HSlider2.value]
 	
-	$Label.text = "Difficult words: "+str($HSlider.value)+"%"+" words: "+str(filtered_wp_count) + " total words: "+str(len(learning.all_wordpairs))
+	$Label.text = "Difficult words: "+str($HSlider.value)+"% "+str(filtered_wp_count) + "/"+str(len(learning.all_wordpairs))+" words"
 	learning.score_filter = 1.0 - ($HSlider.value/$HSlider.max_value)
 	
 	$CheckButton.text = "Direction: "+get_direction_str()

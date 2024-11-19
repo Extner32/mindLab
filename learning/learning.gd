@@ -7,8 +7,6 @@ var score_filter = 1
 
 @export var file_manager: Control
 
-
-
 @onready var prev_pairs = $Tester/PrevPairs
 @onready var answer = $Tester/HBoxContainer/Answer
 
@@ -35,6 +33,10 @@ func combine_files(opened_files):
 func _process(delta):
 	if learning:
 		get_learn_mode().update(delta)
+		
+		$Tester/HBoxContainer/StartButton.text = "stop"
+	else:
+		$Tester/HBoxContainer/StartButton.text = "start"
 
 
 func learning_start():
@@ -91,7 +93,10 @@ func filter_wordpairs_count():
 	return count
 
 func _on_start_button_pressed():
-	learning_start()
+	if learning:
+		force_end()
+	else:
+		learning_start()
 
 func end(total_words, correct_words, wrong_words):
 	learning = false
@@ -100,7 +105,12 @@ func end(total_words, correct_words, wrong_words):
 	file_manager.autosave()
 	reset()
 	await $EndScreen.closed
-
+	
+func force_end():
+	learning = false
+	file_manager.autosave()
+	reset()
+	$Tester.show()
 
 func _on_end_screen_closed(restart):
 	$Tester.show()

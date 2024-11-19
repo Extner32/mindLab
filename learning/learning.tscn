@@ -84,6 +84,8 @@ icon_alignment = 1
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 icon = ExtResource("3_v03cb")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Settings" type="VBoxContainer" parent="Tester" node_paths=PackedStringArray("learning")]
 layout_mode = 2

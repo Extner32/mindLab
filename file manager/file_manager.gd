@@ -84,7 +84,7 @@ func new_file():
 	UserSettings.last_opened_dir = save_file_path
 	files_changed.emit()
 
-func open_file(filepath):
+func open_file(filepath, collapsed=false):
 	var data = FileAccess.open(filepath, FileAccess.READ)
 	var file = preload("res://words file/words_file.tscn").instantiate()
 	while data.get_position() < data.get_length():
@@ -104,6 +104,7 @@ func open_file(filepath):
 	opened_files_names.append(file.path)
 	opened_files.add_child(file)
 	files_changed.emit()
+	file.wordpairs.visible = !collapsed
 			
 	return file
 	
@@ -137,20 +138,14 @@ func autosave():
 
 func open_files():
 	var filepaths = await open_filedialog()
-		
 	for filepath in filepaths:
 		if filepath in opened_files_names:
 			$FileOpenedDialog.show()
 		else:
-			open_file(filepath)
+			open_file(filepath, bool(len(filepaths)-1))
 			UserSettings.dict["last_opened_dir"] = filepath
 
 
 func file_closed(file):
 	opened_files_names.erase(file.path)
 	files_changed.emit()
-
-
-
-
-

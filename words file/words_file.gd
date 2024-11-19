@@ -7,8 +7,12 @@ var wordpair_count = 0
 var changed = false
 var focused_pair = null
 
+@onready var wordpairs: VBoxContainer = $Wordpairs
+
+
 func _ready():
 	$HBoxContainer/FileName.text = path.get_file()
+	$Wordpairs.hide()
 
 func add_pair(new_word, nat_word, history):
 	var pair = preload("res://words file/word_pair.tscn").instantiate()
@@ -35,7 +39,8 @@ func _process(delta):
 					focused_pair = $Wordpairs.get_child(i+1)
 		else:
 			focused_pair = null
-		
+			
+	$HBoxContainer/FileName.text = path.get_file() + " | " + str(wordpair_count)
 		
 
 
@@ -52,8 +57,5 @@ func _on_close_button_pressed():
 	queue_free()
 	
 func pair_removed(pair):
-	print("deleted")
 	changed = true
 	wordpair_count -= 1
-
-

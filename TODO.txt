@@ -8,8 +8,6 @@ ask (for n != 0 3n else 1) times when the user gets it wrong
 
 show origin file when hovering over a word in learn mode
 
-show word count per file
-
 go to current asked word when switching from learn mode to edit mode
 
 
@@ -17,8 +15,9 @@ go to current asked word when switching from learn mode to edit mode
 FIXES:
 remove whitespace before and after words (learn and edit)
 
+DONE:
 open files in condensed view (if there are more than one files)
 
-auto delete wordpair when empty and backspace is pressed
-
 turn start button into stop button when started
+
+auto delete wordpair when empty and backspace is pressed
