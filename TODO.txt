@@ -1,8 +1,9 @@
 
 
-NEW MODES:
+NEW MODES: make every mode a seperate scene							
 repeat mode but only repeat wrong words after all words have been learned
 flashcard mode, click to reveal answer, ask user if the got it correct
+timed mode
 
 NEW FEATURES:
 
