@@ -1,8 +1,12 @@
+
+
+NEW MODES:
+repeat mode but only repeat wrong words after all words have been learned
+flashcard mode, click to reveal answer, ask user if the got it correct
+
 NEW FEATURES:
 
 make an actual settings menu
-
-flashcard mode, click to reveal answer, ask user if the got it correct
 
 ask (for n != 0 3n else 1) times when the user gets it wrong
 
