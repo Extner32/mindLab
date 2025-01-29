@@ -1,5 +1,7 @@
 NEW FEATURES:
 
+rename a file by clicking on the filename in edit mode
+
 make an actual settings menu
 
 flashcard mode, click to reveal answer, ask user if the got it correct
@@ -12,12 +14,24 @@ go to current asked word when switching from learn mode to edit mode
 
 show total learned words
 
+add a "delete all history button"
+
+make it possible to 
+
 
 FIXES:
 remove whitespace before and after words (learn and edit)
 
-DONE:
+automatically uncollapse the file when a new pair is added (now it looks like nothing happens when you press the add pair button)
+
+you can't scroll when the last wordpair is selected
+
+words keep getting repeated when in repeat mode (fix: go through all the words once and then repeat), you can get words 3x in row if you're unlucky
+
 open files in condensed view (if there are more than one files)
+
+DONE:
+
 
 turn start button into stop button when started
 
