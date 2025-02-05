@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=11 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://i17ehsr34mbj" path="res://assets/images/settings.png" id="3_v03cb"]
 [ext_resource type="Script" path="res://learning/modes/OneCycle.gd" id="4_8sbki"]
 [ext_resource type="Script" path="res://learning/modes/Repeat.gd" id="5_sr7gh"]
+[ext_resource type="Texture2D" uid="uid://dpkccilw5gpsg" path="res://assets/images/swap.png" id="5_tlnlj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hkxv"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -93,31 +94,64 @@ size_flags_vertical = 0
 script = ExtResource("3_nrw6q")
 learning = NodePath("../..")
 
-[node name="Label2" type="Label" parent="Tester/Settings"]
+[node name="FilterWPTimer" type="Timer" parent="Tester/Settings"]
+wait_time = 0.2
+autostart = true
+
+[node name="LearnMode" type="HBoxContainer" parent="Tester/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tester/Settings/LearnMode"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "learn mode"
 
-[node name="HSlider2" type="HSlider" parent="Tester/Settings"]
+[node name="HSlider" type="HSlider" parent="Tester/Settings/LearnMode"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 max_value = 1.0
 value = 1.0
 tick_count = 2
 ticks_on_borders = true
 
-[node name="Label" type="Label" parent="Tester/Settings"]
+[node name="DifficultySlider" type="HBoxContainer" parent="Tester/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Tester/Settings/DifficultySlider"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Difficulty"
 
-[node name="HSlider" type="HSlider" parent="Tester/Settings"]
+[node name="HSlider" type="HSlider" parent="Tester/Settings/DifficultySlider"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="Label2" type="Label" parent="Tester/Settings/DifficultySlider"]
+layout_mode = 2
+text = "stats"
+
+[node name="DirectionSwapper" type="HBoxContainer" parent="Tester/Settings"]
 layout_mode = 2
 
-[node name="FilterWPTimer" type="Timer" parent="Tester/Settings"]
-wait_time = 0.2
-autostart = true
-
-[node name="CheckButton" type="CheckButton" parent="Tester/Settings"]
+[node name="word1" type="Label" parent="Tester/Settings/DirectionSwapper"]
 layout_mode = 2
-text = "reversed word direction"
+size_flags_horizontal = 3
+text = "natural word"
+
+[node name="Button" type="Button" parent="Tester/Settings/DirectionSwapper"]
+custom_minimum_size = Vector2(80, 42)
+layout_mode = 2
+icon = ExtResource("5_tlnlj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="word2" type="Label" parent="Tester/Settings/DirectionSwapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "new word"
 
 [node name="PrevPairs" type="RichTextLabel" parent="Tester"]
 layout_mode = 2
@@ -182,9 +216,9 @@ learning = NodePath("../..")
 
 [connection signal="pressed" from="Tester/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Tester/HBoxContainer/SettingsButton" to="Tester/Settings" method="_on_settings_button_pressed"]
-[connection signal="drag_ended" from="Tester/Settings/HSlider" to="Tester/Settings" method="_on_h_slider_drag_ended"]
 [connection signal="timeout" from="Tester/Settings/FilterWPTimer" to="Tester/Settings" method="_on_filter_wp_timer_timeout"]
-[connection signal="toggled" from="Tester/Settings/CheckButton" to="Tester/Settings" method="_on_check_button_toggled"]
+[connection signal="drag_ended" from="Tester/Settings/DifficultySlider/HSlider" to="Tester/Settings" method="_on_h_slider_drag_ended"]
+[connection signal="pressed" from="Tester/Settings/DirectionSwapper/Button" to="Tester/Settings" method="_on_button_pressed"]
 [connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/OkButton" to="EndScreen" method="_on_ok_button_pressed"]
 [connection signal="pressed" from="EndScreen/HBoxContainer/RedoButton" to="EndScreen" method="_on_redo_button_pressed"]

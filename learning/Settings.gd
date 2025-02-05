@@ -14,20 +14,13 @@ func _process(delta):
 	$"../HBoxContainer/SettingsButton".visible = !learning.learning
 	if visible:
 		visible = !learning.learning
-	$Label2.text = "Learn mode: "+str(learn_modes_names[$HSlider2.value])
+	$LearnMode/Label.text = "Learn mode: "+str(learn_modes_names[$LearnMode/HSlider.value])
 
-	UserSettings.learn_mode = learn_modes[$HSlider2.value]
+	UserSettings.learn_mode = learn_modes[$LearnMode/HSlider.value]
 	
-	$Label.text = "Difficult words: "+str($HSlider.value)+"% "+str(filtered_wp_count) + "/"+str(len(learning.all_wordpairs))+" words"
-	learning.score_filter = 1.0 - ($HSlider.value/$HSlider.max_value)
-	
-	$CheckButton.text = "Direction: "+get_direction_str()
-
-func get_direction_str():
-	if UserSettings.dict["reversed_direction"]:
-		return "Natural word → New word"
-	else:
-		return "New word → Natural word"
+	$DifficultySlider/Label.text = "Difficulty"
+	$DifficultySlider/Label2.text = str($DifficultySlider/HSlider.value)+"% "+str(filtered_wp_count) + "/"+str(len(learning.all_wordpairs))+" words"
+	learning.score_filter = 1.0 - ($DifficultySlider/HSlider.value/$DifficultySlider/HSlider.max_value)
 
 func _on_settings_button_pressed():
 	visible = !visible
@@ -47,3 +40,13 @@ func _on_filter_wp_timer_timeout():
 
 func _on_check_button_toggled(toggled_on):
 	UserSettings.dict["reversed_direction"] = not toggled_on
+
+
+func _on_button_pressed() -> void:
+	UserSettings.dict["reversed_direction"] = !UserSettings.dict["reversed_direction"]
+	if UserSettings.dict["reversed_direction"]:
+		$DirectionSwapper/word1.text = "natural word"
+		$DirectionSwapper/word2.text = "new word"
+	else:
+		$DirectionSwapper/word1.text = "new word"
+		$DirectionSwapper/word2.text = "natural word"

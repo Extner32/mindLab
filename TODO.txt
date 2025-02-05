@@ -1,6 +1,13 @@
 NEW FEATURES:
 
+make a undo and redo button
+
 rename a file by clicking on the filename in edit mode
+add a button to switch natural and new word
+add a "delete all history button"
+add a export to csv button
+add search button
+add option to do mixed direction (randomly chooses direction per word)
 
 make an actual settings menu
 
@@ -14,10 +21,6 @@ go to current asked word when switching from learn mode to edit mode
 
 show total learned words
 
-add a "delete all history button"
-
-make it possible to 
-
 
 FIXES:
 remove whitespace before and after words (learn and edit)
@@ -25,6 +28,8 @@ remove whitespace before and after words (learn and edit)
 automatically uncollapse the file when a new pair is added (now it looks like nothing happens when you press the add pair button)
 
 you can't scroll when the last wordpair is selected
+
+progress bar in repeat mode still doesnt work sometimes (also make it gray instead of green)
 
 words keep getting repeated when in repeat mode (fix: go through all the words once and then repeat), you can get words 3x in row if you're unlucky
 

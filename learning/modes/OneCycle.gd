@@ -40,7 +40,7 @@ func update(delta):
 	
 func check_answer():
 	if answer.text == get_correct_answer(): #correct
-		prev_pairs.text = "[color="+UserSettings.correct_color.to_html(false)+"]"+get_question()+" → "+get_correct_answer()+"[/color]"+"\n"+prev_pairs.text
+		prev_pairs.text = "[color="+UserSettings.correct_color.to_html(false)+"]"+get_question()+"[color=9999AE] → [/color]"+get_correct_answer()+"[/color]"+"\n"+prev_pairs.text
 		correct_words += 1
 		wordpairs[idx].history.append(true)
 		correct_bar.value = correct_words
@@ -48,7 +48,12 @@ func check_answer():
 		
 		
 	else: #wrong
-		prev_pairs.text = "[color="+UserSettings.wrong_color.to_html(false)+"]"+get_question()+" "+answer.text+" → "+get_correct_answer()+"[/color]"+"\n"+prev_pairs.text
+		prev_pairs.text = "[color="+UserSettings.wrong_color.to_html(false)+"]"+\
+		get_question()+" "+answer.text+"[/color]"+\
+		"[color=9999AE] → [/color]"+\
+		"[color="+UserSettings.correct_color.to_html(false)+"]"+get_correct_answer()+"[/color]"+\
+		"\n"+prev_pairs.text
+		
 		wrong_words += 1
 		wordpairs[idx].history.append(false)
 		wrong_bar.value = wrong_words
