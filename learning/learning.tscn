@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=10 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
@@ -9,10 +9,7 @@
 [ext_resource type="Script" path="res://learning/modes/Repeat.gd" id="5_sr7gh"]
 [ext_resource type="Texture2D" uid="uid://dpkccilw5gpsg" path="res://assets/images/swap.png" id="5_tlnlj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hkxv"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds7nr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43nn3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Learning" type="Control"]
@@ -38,15 +35,14 @@ grow_vertical = 2
 [node name="Bars" type="PanelContainer" parent="Tester"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-size_flags_vertical = 0
 theme = ExtResource("1_b3rfn")
+theme_override_styles/panel = SubResource("StyleBoxFlat_43nn3")
 
 [node name="CorrectBar" type="ProgressBar" parent="Tester/Bars"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_b3rfn")
-theme_override_styles/background = SubResource("StyleBoxFlat_6hkxv")
 step = 1.0
 rounded = true
 show_percentage = false
@@ -56,7 +52,6 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_b3rfn")
-theme_override_styles/background = SubResource("StyleBoxFlat_ds7nr")
 step = 1.0
 rounded = true
 fill_mode = 1
@@ -98,11 +93,10 @@ learning = NodePath("../..")
 wait_time = 0.2
 autostart = true
 
-[node name="LearnMode" type="HBoxContainer" parent="Tester/Settings"]
+[node name="LearnMode" type="VBoxContainer" parent="Tester/Settings"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Tester/Settings/LearnMode"]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "learn mode"
 
@@ -113,11 +107,10 @@ size_flags_vertical = 4
 max_value = 1.0
 value = 1.0
 
-[node name="DifficultySlider" type="HBoxContainer" parent="Tester/Settings"]
+[node name="DifficultySlider" type="VBoxContainer" parent="Tester/Settings"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Tester/Settings/DifficultySlider"]
-custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Difficulty"
 
@@ -126,10 +119,6 @@ custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-
-[node name="Label2" type="Label" parent="Tester/Settings/DifficultySlider"]
-layout_mode = 2
-text = "stats"
 
 [node name="DirectionSwapper" type="HBoxContainer" parent="Tester/Settings"]
 layout_mode = 2
@@ -172,6 +161,14 @@ script = ExtResource("3_huqs1")
 layout_mode = 2
 text = "All done!"
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="EndScreen"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
+text = "82%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="EndScreen"]
 layout_mode = 2

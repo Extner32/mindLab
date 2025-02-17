@@ -18,8 +18,7 @@ func _process(delta):
 
 	UserSettings.learn_mode = learn_modes[$LearnMode/HSlider.value]
 	
-	$DifficultySlider/Label.text = "Difficulty"
-	$DifficultySlider/Label2.text = str($DifficultySlider/HSlider.value)+"% "+str(filtered_wp_count) + "/"+str(len(learning.all_wordpairs))+" words"
+	$DifficultySlider/Label.text = "Difficulty " + str($DifficultySlider/HSlider.value)+"% "+str(filtered_wp_count) + "/"+str(len(learning.all_wordpairs)) 
 	learning.score_filter = 1.0 - ($DifficultySlider/HSlider.value/$DifficultySlider/HSlider.max_value)
 
 func _on_settings_button_pressed():

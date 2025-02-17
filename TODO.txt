@@ -21,6 +21,8 @@ go to current asked word when switching from learn mode to edit mode
 
 show total learned words
 
+add shortcuts (open, save, new file, switch, ...)
+
 
 FIXES:
 remove whitespace before and after words (learn and edit)
@@ -34,6 +36,10 @@ progress bar in repeat mode still doesnt work sometimes (I think when doing only
 words keep getting repeated when in repeat mode (fix: go through all the words once and then repeat), you can get words 3x in row if you're unlucky
 
 open files in condensed view (if there are more than one files)
+
+nicer end screen
+-bigger numbers
+-show line of red/green squares/dots of the words you got wrong 
 
 DONE:
 
