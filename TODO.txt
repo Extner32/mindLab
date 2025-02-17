@@ -29,7 +29,7 @@ automatically uncollapse the file when a new pair is added (now it looks like no
 
 you can't scroll when the last wordpair is selected
 
-progress bar in repeat mode still doesnt work sometimes (also make it gray instead of green)
+progress bar in repeat mode still doesnt work sometimes (I think when doing only difficult words, the bar is wrong) (also make it gray instead of green)
 
 words keep getting repeated when in repeat mode (fix: go through all the words once and then repeat), you can get words 3x in row if you're unlucky
 

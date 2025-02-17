@@ -112,8 +112,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
 value = 1.0
-tick_count = 2
-ticks_on_borders = true
 
 [node name="DifficultySlider" type="HBoxContainer" parent="Tester/Settings"]
 layout_mode = 2
