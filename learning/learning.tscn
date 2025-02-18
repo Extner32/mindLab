@@ -1,16 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=6 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
-[ext_resource type="Script" path="res://learning/EndScreen.gd" id="3_huqs1"]
 [ext_resource type="Script" path="res://learning/Settings.gd" id="3_nrw6q"]
-[ext_resource type="Texture2D" uid="uid://i17ehsr34mbj" path="res://assets/images/settings.png" id="3_v03cb"]
-[ext_resource type="Script" path="res://learning/modes/OneCycle.gd" id="4_8sbki"]
-[ext_resource type="Script" path="res://learning/modes/Repeat.gd" id="5_sr7gh"]
 [ext_resource type="Texture2D" uid="uid://dpkccilw5gpsg" path="res://assets/images/swap.png" id="5_tlnlj"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_43nn3"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[ext_resource type="PackedScene" uid="uid://u26xlqb7egfh" path="res://learning/modes/OneCycle.tscn" id="6_em8yn"]
 
 [node name="Learning" type="Control"]
 layout_mode = 3
@@ -24,130 +18,7 @@ size_flags_vertical = 3
 theme = ExtResource("1_b3rfn")
 script = ExtResource("1_xqwy1")
 
-[node name="Tester" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bars" type="PanelContainer" parent="Tester"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-theme = ExtResource("1_b3rfn")
-theme_override_styles/panel = SubResource("StyleBoxFlat_43nn3")
-
-[node name="CorrectBar" type="ProgressBar" parent="Tester/Bars"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_b3rfn")
-step = 1.0
-rounded = true
-show_percentage = false
-
-[node name="WrongBar" type="ProgressBar" parent="Tester/Bars"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_b3rfn")
-step = 1.0
-rounded = true
-fill_mode = 1
-show_percentage = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Tester"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
-[node name="Question" type="Label" parent="Tester/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Answer" type="LineEdit" parent="Tester/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "answer"
-
-[node name="StartButton" type="Button" parent="Tester/HBoxContainer"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-text = "start"
-icon_alignment = 1
-
-[node name="SettingsButton" type="Button" parent="Tester/HBoxContainer"]
-custom_minimum_size = Vector2(42, 42)
-layout_mode = 2
-icon = ExtResource("3_v03cb")
-icon_alignment = 1
-expand_icon = true
-
-[node name="Settings" type="VBoxContainer" parent="Tester" node_paths=PackedStringArray("learning")]
-layout_mode = 2
-size_flags_vertical = 0
-script = ExtResource("3_nrw6q")
-learning = NodePath("../..")
-
-[node name="FilterWPTimer" type="Timer" parent="Tester/Settings"]
-wait_time = 0.2
-autostart = true
-
-[node name="LearnMode" type="VBoxContainer" parent="Tester/Settings"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Tester/Settings/LearnMode"]
-layout_mode = 2
-text = "learn mode"
-
-[node name="HSlider" type="HSlider" parent="Tester/Settings/LearnMode"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-value = 1.0
-
-[node name="DifficultySlider" type="VBoxContainer" parent="Tester/Settings"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Tester/Settings/DifficultySlider"]
-layout_mode = 2
-text = "Difficulty"
-
-[node name="HSlider" type="HSlider" parent="Tester/Settings/DifficultySlider"]
-custom_minimum_size = Vector2(0, 42)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
-[node name="DirectionSwapper" type="HBoxContainer" parent="Tester/Settings"]
-layout_mode = 2
-
-[node name="word1" type="Label" parent="Tester/Settings/DirectionSwapper"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "natural word"
-
-[node name="Button" type="Button" parent="Tester/Settings/DirectionSwapper"]
-custom_minimum_size = Vector2(80, 42)
-layout_mode = 2
-icon = ExtResource("5_tlnlj")
-icon_alignment = 1
-expand_icon = true
-
-[node name="word2" type="Label" parent="Tester/Settings/DirectionSwapper"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "new word"
-
-[node name="PrevPairs" type="RichTextLabel" parent="Tester"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-bbcode_enabled = true
-shortcut_keys_enabled = false
-
-[node name="EndScreen" type="VBoxContainer" parent="."]
+[node name="Start" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -155,65 +26,93 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_huqs1")
 
-[node name="Label" type="Label" parent="EndScreen"]
-layout_mode = 2
-text = "All done!"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="EndScreen"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Start"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 100
-text = "82%"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="EndScreen"]
-layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
-fit_content = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="EndScreen"]
-layout_mode = 2
-
-[node name="OkButton" type="Button" parent="EndScreen/HBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
+[node name="Settings" type="VBoxContainer" parent="Start/ScrollContainer" node_paths=PackedStringArray("learning")]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
-text = "Ok"
+size_flags_vertical = 2
+script = ExtResource("3_nrw6q")
+learning = NodePath("../../..")
 
-[node name="RedoButton" type="Button" parent="EndScreen/HBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
+[node name="FilterWPTimer" type="Timer" parent="Start/ScrollContainer/Settings"]
+wait_time = 0.2
+autostart = true
+
+[node name="LearnMode" type="VBoxContainer" parent="Start/ScrollContainer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Start/ScrollContainer/Settings/LearnMode"]
+layout_mode = 2
+text = "learn mode"
+
+[node name="HSlider" type="HSlider" parent="Start/ScrollContainer/Settings/LearnMode"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
-text = "Restart"
+size_flags_vertical = 4
+max_value = 1.0
+value = 1.0
+
+[node name="DifficultySlider" type="VBoxContainer" parent="Start/ScrollContainer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Start/ScrollContainer/Settings/DifficultySlider"]
+layout_mode = 2
+text = "Difficulty"
+
+[node name="HSlider" type="HSlider" parent="Start/ScrollContainer/Settings/DifficultySlider"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="DirectionSwapper" type="HBoxContainer" parent="Start/ScrollContainer/Settings"]
+layout_mode = 2
+
+[node name="word1" type="Label" parent="Start/ScrollContainer/Settings/DirectionSwapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "natural word"
+
+[node name="Button" type="Button" parent="Start/ScrollContainer/Settings/DirectionSwapper"]
+custom_minimum_size = Vector2(80, 42)
+layout_mode = 2
+icon = ExtResource("5_tlnlj")
+icon_alignment = 1
+expand_icon = true
+
+[node name="word2" type="Label" parent="Start/ScrollContainer/Settings/DirectionSwapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "new word"
+
+[node name="StartButton" type="Button" parent="Start"]
+layout_mode = 2
+text = "start"
 
 [node name="NoFilesDialog" type="AcceptDialog" parent="."]
 initial_position = 2
-size = Vector2i(170, 100)
+size = Vector2i(204, 114)
 ok_button_text = "    OK    "
 dialog_text = "No opened files!"
 
-[node name="Modes" type="Node" parent="."]
+[node name="LearnModes" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 
-[node name="OneCycle" type="Node" parent="Modes" node_paths=PackedStringArray("learning")]
-script = ExtResource("4_8sbki")
-learning = NodePath("../..")
+[node name="Onecycle" parent="LearnModes" instance=ExtResource("6_em8yn")]
+layout_mode = 1
 
-[node name="Repeat" type="Node" parent="Modes" node_paths=PackedStringArray("learning")]
-script = ExtResource("5_sr7gh")
-learning = NodePath("../..")
-
-[connection signal="pressed" from="Tester/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Tester/HBoxContainer/SettingsButton" to="Tester/Settings" method="_on_settings_button_pressed"]
-[connection signal="timeout" from="Tester/Settings/FilterWPTimer" to="Tester/Settings" method="_on_filter_wp_timer_timeout"]
-[connection signal="drag_ended" from="Tester/Settings/DifficultySlider/HSlider" to="Tester/Settings" method="_on_h_slider_drag_ended"]
-[connection signal="pressed" from="Tester/Settings/DirectionSwapper/Button" to="Tester/Settings" method="_on_button_pressed"]
-[connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]
-[connection signal="pressed" from="EndScreen/HBoxContainer/OkButton" to="EndScreen" method="_on_ok_button_pressed"]
-[connection signal="pressed" from="EndScreen/HBoxContainer/RedoButton" to="EndScreen" method="_on_redo_button_pressed"]
+[connection signal="timeout" from="Start/ScrollContainer/Settings/FilterWPTimer" to="Start/ScrollContainer/Settings" method="_on_filter_wp_timer_timeout"]
+[connection signal="drag_ended" from="Start/ScrollContainer/Settings/DifficultySlider/HSlider" to="Start/ScrollContainer/Settings" method="_on_h_slider_drag_ended"]
+[connection signal="pressed" from="Start/ScrollContainer/Settings/DirectionSwapper/Button" to="Start/ScrollContainer/Settings" method="_on_button_pressed"]
+[connection signal="pressed" from="Start/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="end" from="LearnModes/Onecycle" to="." method="_on_onecycle_end"]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8l3jyvd6rjra"]
+
+[ext_resource type="Script" path="res://learning/EndScreen.gd" id="1_eg1ee"]
+[ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_m1r5g"]
+
+[node name="EndScreen" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_m1r5g")
+script = ExtResource("1_eg1ee")
+
+[node name="done" type="Label" parent="."]
+layout_mode = 2
+text = "Done!"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 80
+text = "82%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "gmlkqjdf "
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Continue"

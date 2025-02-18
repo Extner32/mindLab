@@ -11,18 +11,12 @@ func _ready():
 	filtered_wp_count = learning.filter_wordpairs_count()
 
 func _process(delta):
-	$"../HBoxContainer/SettingsButton".visible = !learning.learning
-	if visible:
-		visible = !learning.learning
 	$LearnMode/Label.text = "Learn mode: "+str(learn_modes_names[$LearnMode/HSlider.value])
 
 	UserSettings.learn_mode = learn_modes[$LearnMode/HSlider.value]
 	
 	$DifficultySlider/Label.text = "Difficulty " + str($DifficultySlider/HSlider.value)+"% "+str(filtered_wp_count) + "/"+str(len(learning.all_wordpairs)) 
 	learning.score_filter = 1.0 - ($DifficultySlider/HSlider.value/$DifficultySlider/HSlider.max_value)
-
-func _on_settings_button_pressed():
-	visible = !visible
 
 
 func _on_h_slider_drag_ended(value_changed):
