@@ -19,7 +19,9 @@ var learn_mode = learn_modes.ONE_CYCLE
 
 
 var correct_color = Color(0.2, 0.741, 0.470)
+var correct_hex = correct_color.to_html()
 var wrong_color = Color(0.670, 0.047, 0.325)
+var wrong_hex = wrong_color.to_html()
 
 var dict = {"last_opened_dir":"/",
 				"reversed_direction":true,

@@ -14,14 +14,12 @@ signal end(correct:int, wrong:int)
 func _ready() -> void:
 	set_process(false)
 	$VBoxContainer/Bars/CorrectBar.get_theme_stylebox("fill").bg_color = UserSettings.correct_color
-	$VBoxContainer/Bars/WrongBar.get_theme_stylebox("fill").bg_color = UserSettings.wrong_color
 
 func start(wps):
 	reset()
 	wordpairs = wps
 	wordpairs.shuffle()
 	$VBoxContainer/Bars/CorrectBar.max_value = len(wps)
-	$VBoxContainer/Bars/WrongBar.max_value = len(wps)
 	
 	$VBoxContainer.show()
 	$EndScreen.hide()
@@ -30,7 +28,6 @@ func start(wps):
 func _process(delta: float) -> void:
 	question.text = get_question()
 	$VBoxContainer/Bars/CorrectBar.value = correct_words
-	$VBoxContainer/Bars/WrongBar.value = wrong_words
 	
 	
 	if answer.has_focus() and Input.is_action_just_pressed("enter"):
@@ -41,9 +38,16 @@ func _process(delta: float) -> void:
 		
 		answer.text = ""
 		current_idx += 1
-		if current_idx >= len(wordpairs):
+		
+		if len(wordpairs) == 0:
 			exit()
 			return
+		
+		if current_idx >= (len(wordpairs)-1):
+			current_idx = 0
+			wordpairs.shuffle()
+			
+
 			
 func exit():
 	$VBoxContainer.hide()
@@ -60,7 +64,7 @@ func correct_answer():
 	
 	$VBoxContainer/PrevPairs.text =\
 	"[color="+UserSettings.correct_hex+"]"+get_question()+"[color=9999AE] → [/color]"+get_correct_answer()+"[/color]"+"\n"+$VBoxContainer/PrevPairs.text
-	
+	wordpairs.pop_at(current_idx)
 
 func wrong_answer(user_answer):
 	wrong_words += 1

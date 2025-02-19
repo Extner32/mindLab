@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://u26xlqb7egfh"]
+[gd_scene load_steps=7 format=3 uid="uid://dgxlvgv7wsjqs"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_honhx"]
-[ext_resource type="Script" path="res://learning/modes/one_cycle.gd" id="2_gikmq"]
+[ext_resource type="Script" path="res://learning/modes/repeat.gd" id="2_6hdmv"]
 [ext_resource type="Texture2D" uid="uid://bxijn5evpqd7n" path="res://assets/images/stop.png" id="2_s62ww"]
 [ext_resource type="PackedScene" uid="uid://b8l3jyvd6rjra" path="res://learning/end_screen.tscn" id="4_pd11d"]
 
@@ -14,14 +14,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1gj2c"]
-bg_color = Color(0.841679, 0.504763, 0.26286, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[node name="Onecycle" type="Control"]
+[node name="Repeat" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +24,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_honhx")
-script = ExtResource("2_gikmq")
+script = ExtResource("2_6hdmv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -57,17 +50,6 @@ step = 1.0
 rounded = true
 show_percentage = false
 
-[node name="WrongBar" type="ProgressBar" parent="VBoxContainer/Bars"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_honhx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_1gj2c")
-step = 1.0
-rounded = true
-fill_mode = 1
-show_percentage = false
-
 [node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
@@ -81,7 +63,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "answer"
+placeholder_text = "answer re"
 
 [node name="StopButton" type="Button" parent="VBoxContainer/HFlowContainer"]
 custom_minimum_size = Vector2(42, 42)

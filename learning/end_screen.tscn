@@ -29,8 +29,9 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
-text = "gmlkqjdf "
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 text = "Continue"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

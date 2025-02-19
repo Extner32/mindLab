@@ -57,9 +57,20 @@ func _on_start_button_pressed() -> void:
 	$LearnModes.show()
 	$Start.hide()
 	
+	for mode in $LearnModes.get_children():
+		mode.hide()
+	
 	match UserSettings.learn_mode:
 		UserSettings.learn_modes.ONE_CYCLE:
 			$LearnModes/Onecycle.start(filter_wordpairs())
 			$LearnModes/Onecycle.show()
 		UserSettings.learn_modes.REPEAT:
-			pass
+			$LearnModes/Repeat.start(filter_wordpairs())
+			$LearnModes/Repeat.show()
+
+
+func _on_onecycle_end(correct: int, wrong: int) -> void:
+	reset()
+
+func _on_repeat_end(correct: int, wrong: int) -> void:
+	reset()

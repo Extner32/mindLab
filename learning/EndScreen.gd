@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 
-signal closed(restart)
+signal closed
 
 func show_results(correct_words, wrong_words):
 	
@@ -12,8 +12,20 @@ func show_results(correct_words, wrong_words):
 	percent_correct = snapped(percent_correct, 0.01)
 	$Label.text = str(percent_correct)+"%"
 	
-	$RichTextLabel.text += "[color="+UserSettings.correct_color.to_html()+"]"+"correct words: "+str(correct_words)+"[/color]"
-	$RichTextLabel.text += "\n"
+	$RichTextLabel.text += "[center]"
 	
-	$RichTextLabel.text += "[color="+UserSettings.wrong_color.to_html()+"]"+"wrong words: "+str(wrong_words)+"[/color]"
+	$RichTextLabel.text += "[color="+UserSettings.correct_hex+"]"+"correct words: "+str(correct_words)+"[/color]"
+	$RichTextLabel.text += "\n"
+	$RichTextLabel.text += "[color="+UserSettings.wrong_hex+"]"+"wrong words: "+str(wrong_words)+"[/color]"
+	$RichTextLabel.text += "\n"
+	$RichTextLabel.text += "[color=9999ae]total words: "+str(total_words)+"[/color]"
+	$RichTextLabel.text += "[/center]"
+	
 	show()
+
+
+
+
+func _on_button_pressed() -> void:
+	closed.emit()
+	hide()
