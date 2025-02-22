@@ -13,8 +13,8 @@ var card_center := Vector2.ZERO
 var sides_move_dst = 0
 var sides_open_threshold = 0
 var sides_speed = 10
-var card_side_suction = 100
-var suction_strength = 1000
+var card_side_suction = 0
+var suction_strength = 5000
 
 var mouse_vel := Vector2.ZERO
 var mouse_pos := Vector2.ZERO
@@ -51,8 +51,10 @@ func _process(delta: float) -> void:
 	prev_mouse_pos = mouse_pos
 	mouse_pos = get_global_mouse_position()
 	mouse_vel = (mouse_pos-prev_mouse_pos)/delta
+	
 	sides_move_dst = get_viewport().size.x*0.2
 	sides_open_threshold = get_viewport().size.x*0.3
+	card_side_suction = sides_open_threshold
 	
 	card_center = card.global_position+card.pivot_offset
 	

@@ -25,10 +25,10 @@ func get_pair(idx):
 	return $Wordpairs.get_child(idx)
 	
 func _process(delta):
-	var wordpairs = $Wordpairs.get_children()
-	for i in range(len(wordpairs)):
-		if wordpairs[i].nat_word_line.has_focus() or wordpairs[i].new_word_line.has_focus():
-			focused_pair = wordpairs[i]
+	var wps = $Wordpairs.get_children()
+	for i in range(len(wps)):
+		if wps[i].nat_word_line.has_focus() or wps[i].new_word_line.has_focus():
+			focused_pair = wps[i]
 			
 			if Input.is_action_just_pressed("enter"):
 				if i == (wordpair_count-1): 
