@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=8 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" path="res://learning/learning.gd" id="1_xqwy1"]
 [ext_resource type="Script" path="res://learning/Settings.gd" id="3_nrw6q"]
 [ext_resource type="Texture2D" uid="uid://dpkccilw5gpsg" path="res://assets/images/swap.png" id="5_tlnlj"]
-[ext_resource type="PackedScene" uid="uid://dgxlvgv7wsjqs" path="res://learning/modes/Repeat.tscn" id="6_144pf"]
-[ext_resource type="PackedScene" uid="uid://u26xlqb7egfh" path="res://learning/modes/OneCycle.tscn" id="6_em8yn"]
+[ext_resource type="PackedScene" uid="uid://dgxlvgv7wsjqs" path="res://learning/modes/Repeat/Repeat.tscn" id="6_144pf"]
+[ext_resource type="PackedScene" uid="uid://u26xlqb7egfh" path="res://learning/modes/OneCycle/OneCycle.tscn" id="6_em8yn"]
+[ext_resource type="PackedScene" uid="uid://da21ifqd6c1dh" path="res://learning/modes/flashcards/flashcards.tscn" id="7_d4mbq"]
 
 [node name="Learning" type="Control"]
 layout_mode = 3
@@ -20,7 +21,6 @@ theme = ExtResource("1_b3rfn")
 script = ExtResource("1_xqwy1")
 
 [node name="Start" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,6 +101,7 @@ ok_button_text = "    OK    "
 dialog_text = "No opened files!"
 
 [node name="LearnModes" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,9 +116,13 @@ layout_mode = 1
 [node name="Repeat" parent="LearnModes" instance=ExtResource("6_144pf")]
 layout_mode = 1
 
+[node name="Flashcards" parent="LearnModes" instance=ExtResource("7_d4mbq")]
+layout_mode = 1
+
 [connection signal="timeout" from="Start/ScrollContainer/Settings/FilterWPTimer" to="Start/ScrollContainer/Settings" method="_on_filter_wp_timer_timeout"]
 [connection signal="drag_ended" from="Start/ScrollContainer/Settings/DifficultySlider/HSlider" to="Start/ScrollContainer/Settings" method="_on_h_slider_drag_ended"]
 [connection signal="pressed" from="Start/ScrollContainer/Settings/DirectionSwapper/Button" to="Start/ScrollContainer/Settings" method="_on_button_pressed"]
 [connection signal="pressed" from="Start/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="end" from="LearnModes/Onecycle" to="." method="_on_onecycle_end"]
 [connection signal="end" from="LearnModes/Repeat" to="." method="_on_repeat_end"]
+[connection signal="end" from="LearnModes/Flashcards" to="." method="_on_flashcards_end"]

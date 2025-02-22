@@ -67,10 +67,16 @@ func _on_start_button_pressed() -> void:
 		UserSettings.learn_modes.REPEAT:
 			$LearnModes/Repeat.start(filter_wordpairs())
 			$LearnModes/Repeat.show()
+		UserSettings.learn_modes.FLASHCARDS:
+			$LearnModes/Flashcards.start(filter_wordpairs())
+			$LearnModes/Flashcards.show()
 
 
 func _on_onecycle_end(correct: int, wrong: int) -> void:
 	reset()
 
 func _on_repeat_end(correct: int, wrong: int) -> void:
+	reset()
+
+func _on_flashcards_end(correct: int, wrong: int) -> void:
 	reset()

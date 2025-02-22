@@ -4,11 +4,12 @@ extends VBoxContainer
 
 var filtered_wp_count = 0
 
-var learn_modes_names = ["One cycle", "Repeat"]
-var learn_modes = [UserSettings.learn_modes.ONE_CYCLE, UserSettings.learn_modes.REPEAT]
+var learn_modes_names = ["One cycle", "Repeat", "Flashcards"]
+var learn_modes = [UserSettings.learn_modes.ONE_CYCLE, UserSettings.learn_modes.REPEAT, UserSettings.learn_modes.FLASHCARDS]
 
 func _ready():
 	filtered_wp_count = learning.filter_wordpairs_count()
+	$LearnMode/HSlider.max_value = (len(learn_modes)-1)
 
 func _process(delta):
 	$LearnMode/Label.text = "Learn mode: "+str(learn_modes_names[$LearnMode/HSlider.value])

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dgxlvgv7wsjqs"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_honhx"]
-[ext_resource type="Script" path="res://learning/modes/repeat.gd" id="2_6hdmv"]
+[ext_resource type="Script" path="res://learning/modes/Repeat/repeat.gd" id="2_6hdmv"]
 [ext_resource type="Texture2D" uid="uid://bxijn5evpqd7n" path="res://assets/images/stop.png" id="2_s62ww"]
 [ext_resource type="PackedScene" uid="uid://b8l3jyvd6rjra" path="res://learning/end_screen.tscn" id="4_pd11d"]
 
@@ -63,7 +63,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "answer re"
+placeholder_text = "answer"
 
 [node name="StopButton" type="Button" parent="VBoxContainer/HFlowContainer"]
 custom_minimum_size = Vector2(42, 42)

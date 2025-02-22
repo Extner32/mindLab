@@ -1,0 +1,127 @@
+[gd_scene load_steps=9 format=3 uid="uid://da21ifqd6c1dh"]
+
+[ext_resource type="PackedScene" uid="uid://dls3vcb6xgqo3" path="res://learning/modes/flashcards/card.tscn" id="1_7k20s"]
+[ext_resource type="Script" path="res://learning/modes/flashcards/flashcards.gd" id="1_7sq4p"]
+[ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_18njg"]
+[ext_resource type="PackedScene" uid="uid://b8l3jyvd6rjra" path="res://learning/end_screen.tscn" id="3_visqf"]
+[ext_resource type="Texture2D" uid="uid://cmisq8j2xypgg" path="res://assets/images/progressbar.png" id="4_6qlag"]
+[ext_resource type="Texture2D" uid="uid://bxijn5evpqd7n" path="res://assets/images/stop.png" id="5_e188h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t8pg6"]
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjond"]
+bg_color = Color(0.832278, 0.504484, 0.353802, 1)
+corner_radius_top_left = 20
+corner_radius_bottom_left = 20
+
+[node name="Flashcards" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_18njg")
+script = ExtResource("1_7sq4p")
+
+[node name="Cards" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CorrectSide" type="Panel" parent="Cards"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = 64.0
+offset_right = -10.0
+offset_bottom = -64.0
+grow_vertical = 2
+pivot_offset = Vector2(200, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_t8pg6")
+
+[node name="WrongSide" type="Panel" parent="Cards"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 64.0
+offset_right = 200.0
+offset_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xjond")
+
+[node name="Card" parent="Cards" instance=ExtResource("1_7k20s")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -687.0
+offset_bottom = -337.0
+
+[node name="Control" type="Control" parent="Cards"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 45.0
+grow_horizontal = 0
+metadata/_edit_group_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Cards/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("4_6qlag")
+texture_progress = ExtResource("4_6qlag")
+tint_under = Color(0.137255, 0.137255, 0.156863, 1)
+
+[node name="StopButton" type="Button" parent="Cards/Control"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("5_e188h")
+icon_alignment = 1
+expand_icon = true
+
+[node name="EndScreen" parent="." instance=ExtResource("3_visqf")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Cards/Control/StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]

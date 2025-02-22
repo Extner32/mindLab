@@ -9,7 +9,7 @@ func show_results(correct_words, wrong_words):
 	var total_words = correct_words + wrong_words
 	
 	var percent_correct = float(correct_words)/float(total_words) * 100.0
-	percent_correct = snapped(percent_correct, 0.01)
+	percent_correct = snapped(percent_correct, 0.1)
 	$Label.text = str(percent_correct)+"%"
 	
 	$RichTextLabel.text += "[center]"
