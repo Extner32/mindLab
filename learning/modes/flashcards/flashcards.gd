@@ -86,9 +86,9 @@ func _process(delta: float) -> void:
 		close_correct_side(delta)
 		close_wrong_side(delta)
 		
-		if card_center.x < (-card.size.x/2+card_side_suction):
+		if card_center.x <= (sides_move_dst):
 			card.velocity.x += -suction_strength*delta
-		elif card_center.x > (get_viewport().size.x+card.size.x/2-card_side_suction):
+		elif card_center.x >= (get_viewport().size.x-sides_move_dst):
 			card.velocity.x += suction_strength*delta
 		
 		
@@ -138,6 +138,8 @@ func smooth_exp(current, target, delta):
 func new_card():
 	var card_start = Vector2(get_viewport().size.x/2-card.pivot_offset.x, -card.size.y)
 	dragging_card = false
+	card.animplayer.play("RESET")
+	card.animplayer.stop()
 	card.side = false
 	card.rotation = 0
 	card.velocity = Vector2(0, sqrt(get_viewport().size.y)*24)

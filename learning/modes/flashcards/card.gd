@@ -8,17 +8,19 @@ var velocity := Vector2.ZERO
 
 var max_click_time = 0.2
 var click_timer = 0
+
+@onready var animplayer: AnimationPlayer = $AnimationPlayer
 	
 func side_change(): #gets called from the animation
 	side = !side
 
 func _process(delta: float) -> void:
-	
+	pivot_offset = size/2.0
 	#print(mouse_overlap)
 	
 	if side == false: 
 		self.text = get_question()
-	elif side == true:
+	if side == true:
 		self.text = get_correct_answer()
 		
 	if mouse_overlap and Input.is_action_just_pressed("LMB"):
@@ -26,7 +28,8 @@ func _process(delta: float) -> void:
 		
 		
 	if Input.is_action_just_released("LMB") and click_timer > 0:
-		$AnimationPlayer.play("flip")
+		animplayer.play("flip")
+
 		click_timer = 0
 	
 	

@@ -81,7 +81,7 @@ func new_file():
 	opened_files_names.append(wordsfile.path)
 	
 	save_file(wordsfile)
-	UserSettings.last_opened_dir = save_file_path
+	UserSettings.dict["last_opened_dir"] = save_file_path
 	files_changed.emit()
 
 func open_file(filepath, collapsed=false):
