@@ -26,6 +26,8 @@ var prev_mouse_pos := Vector2.ZERO
 
 @onready var progress_bar: TextureProgressBar = $Cards/Control/TextureProgressBar
 
+var screen_size := Vector2.ZERO
+
 signal end(correct:int, wrong:int)
 
 func _ready() -> void:
@@ -47,13 +49,15 @@ func start(wps):
 
 
 func _process(delta: float) -> void:
+	screen_size = get_viewport_rect().size
+	
 	progress_bar.value = current_idx
 	prev_mouse_pos = mouse_pos
 	mouse_pos = get_global_mouse_position()
 	mouse_vel = (mouse_pos-prev_mouse_pos)/delta
 	
-	sides_move_dst = get_viewport().size.x*0.2
-	sides_open_threshold = get_viewport().size.x*0.3
+	sides_move_dst = screen_size.x*0.2
+	sides_open_threshold = screen_size.x*0.3
 	card_side_suction = sides_open_threshold
 	
 	card_center = card.global_position+card.pivot_offset
@@ -67,6 +71,7 @@ func _process(delta: float) -> void:
 		
 	if dragging_card:
 		card.velocity = mouse_vel
+		#card.velocity = ((get_global_mouse_position()+drag_pivot) - card.global_position)/delta
 		
 		
 		var rotation_direction = (drag_pivot.y+card.pivot_offset.y)*0.001
@@ -77,7 +82,7 @@ func _process(delta: float) -> void:
 			correct_side.offset_right = smooth_exp(correct_side.offset_right, sides_move_dst, delta*sides_speed)
 		else:
 			close_correct_side(delta)
-		if card_center.x > get_viewport().size.x - sides_open_threshold:
+		if card_center.x > screen_size.x - sides_open_threshold:
 			wrong_side.offset_left = smooth_exp(wrong_side.offset_left, -sides_move_dst, delta*sides_speed)
 		else:
 			close_wrong_side(delta)
@@ -86,16 +91,16 @@ func _process(delta: float) -> void:
 		close_correct_side(delta)
 		close_wrong_side(delta)
 		
-		if card_center.x <= (sides_move_dst):
+		if card_center.x <= (sides_move_dst*0.5):
 			card.velocity.x += -suction_strength*delta
-		elif card_center.x >= (get_viewport().size.x-sides_move_dst):
+		elif card_center.x >= (screen_size.x-(sides_move_dst*0.5)):
 			card.velocity.x += suction_strength*delta
 		
 		
 	if card_center.y < - card.size.y:
-		card.global_position.y = get_viewport().size.y
+		card.global_position.y = screen_size.y
 		card.velocity *= 0.5
-	if card_center.y > (get_viewport().size.y + card.size.y):
+	if card_center.y > (screen_size.y + card.size.y):
 		card.global_position.y = - card.size.y
 		card.velocity *= 0.5
 
@@ -105,7 +110,7 @@ func _process(delta: float) -> void:
 		next()
 		new_card()
 
-	if card_center.x > get_viewport().size.x+card.size.x/2: #wrong
+	if card_center.x > screen_size.x+card.size.x/2: #wrong
 		wrong_words += 1
 		wordpairs[current_idx].history.append(false)
 		next()
@@ -136,14 +141,13 @@ func smooth_exp(current, target, delta):
 	return current + ((target - current) * (1 - exp(-delta)));
 	
 func new_card():
-	var card_start = Vector2(get_viewport().size.x/2-card.pivot_offset.x, -card.size.y)
 	dragging_card = false
 	card.animplayer.play("RESET")
 	card.animplayer.stop()
 	card.side = false
 	card.rotation = 0
-	card.velocity = Vector2(0, sqrt(get_viewport().size.y)*24)
-	card.global_position = card_start
+	card.velocity = Vector2.ZERO
+	card.global_position = screen_size/2-card.pivot_offset
 	
 	
 func next():

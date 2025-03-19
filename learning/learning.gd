@@ -5,9 +5,10 @@ var learning = false
 #1 means all words are included, 0: only the words that you have got wrong every time
 var score_filter = 1 
 
+var worst_score = 0
+var best_score = 1
 
 @onready var settings: VBoxContainer = $Start/ScrollContainer/Settings
-
 
 @export var file_manager: Control
 
@@ -31,7 +32,12 @@ func get_score(history: Array):
 func filter_wordpairs():
 	var filtered = []
 	for wp in all_wordpairs:
-		if get_score(wp.history) <= score_filter:
+		var score = get_score(wp.history)
+		if score < worst_score:
+			worst_score = score
+		if score > best_score:
+			best_score = score
+		if score <= score_filter:
 			filtered.append(wp)
 			
 	return filtered
@@ -39,7 +45,12 @@ func filter_wordpairs():
 func filter_wordpairs_count():
 	var count = 0
 	for wp in all_wordpairs:
-		if get_score(wp.history) <= score_filter:
+		var score = get_score(wp.history)
+		if score < worst_score:
+			worst_score = score
+		if score > best_score:
+			best_score = score
+		if score <= score_filter:
 			count += 1
 			
 	return count

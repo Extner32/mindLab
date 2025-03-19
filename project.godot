@@ -12,14 +12,15 @@ config_version=5
 
 config/name="mindLab"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.137255, 0.137255, 0.156863, 1)
 boot_splash/image="res://assets/images/splash_screen.png"
 config/icon="res://assets/images/logo.svg"
 
 [autoload]
 
-UserSettings="*res://user_settings.gd"
+UserSettings="*res://global/user_settings.gd"
+gb="*res://global/global.gd"
 
 [debug]
 
@@ -27,7 +28,9 @@ gdscript/warnings/unused_parameter=0
 
 [display]
 
+window/size/no_focus=true
 window/subwindows/embed_subwindows=false
+window/stretch/aspect="ignore"
 window/handheld/orientation=1
 
 [file_customization]
@@ -63,4 +66,5 @@ LMB={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.137255, 0.137255, 0.156863, 1)

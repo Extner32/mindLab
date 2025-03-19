@@ -11,6 +11,10 @@ func _ready():
 		if arg.get_extension() == "mLab":
 			file_manager.open_file(arg)
 	
+	#if on android this is required to be able to access files
+	if OS.has_feature("android"):
+		OS.request_permissions()
+	
 
 func _on_file_manager_files_changed():
 	learning.combine_files(file_manager.opened_files)

@@ -7,6 +7,7 @@ var save_file_path = ""
 var opened_files_names = []
 
 
+
 @onready var opened_files = $ScrollContainer/OpenedFiles
 
 signal files_changed
@@ -33,10 +34,13 @@ func check_files_changed():
 	return changed
 	
 func open_filedialog():
-
-	
 	$OpenFileDialog.file_mode = 1
-	$OpenFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
+	
+	if OS.has_feature("android"):
+		$OpenFileDialog.root_subfolder = gb.ANDROID_ROOT_SUBFOLDER
+	else:
+		$OpenFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
+	
 	$OpenFileDialog.show()
 		
 	get_tree().paused = true
@@ -45,7 +49,12 @@ func open_filedialog():
 	return open_files_path
 
 func save_filedialog():
-	$SaveFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
+	
+	if OS.has_feature("android"):
+		$SaveFileDialog.root_subfolder = gb.ANDROID_ROOT_SUBFOLDER
+	else:
+		$SaveFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
+	
 	$SaveFileDialog.show()
 		
 	get_tree().paused = true

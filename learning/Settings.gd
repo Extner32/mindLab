@@ -44,3 +44,7 @@ func _on_button_pressed() -> void:
 	else:
 		$DirectionSwapper/word1.text = "new word"
 		$DirectionSwapper/word2.text = "natural word"
+
+
+func map(value, lower1, upper1, lower2, upper2):
+	

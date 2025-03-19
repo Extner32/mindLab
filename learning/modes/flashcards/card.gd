@@ -9,12 +9,17 @@ var velocity := Vector2.ZERO
 var max_click_time = 0.2
 var click_timer = 0
 
+
+
+
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 	
 func side_change(): #gets called from the animation
 	side = !side
 
 func _process(delta: float) -> void:
+	
+	
 	pivot_offset = size/2.0
 	#print(mouse_overlap)
 	
@@ -29,6 +34,7 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_released("LMB") and click_timer > 0:
 		animplayer.play("flip")
+		velocity = Vector2.ZERO
 
 		click_timer = 0
 	
