@@ -71,7 +71,7 @@ func wrong_answer(user_answer):
 	wordpairs[current_idx].history.append(false)
 
 	$VBoxContainer/PrevPairs.text = "[color="+UserSettings.wrong_hex+"]"+\
-	get_question()+" "+answer.text+"[/color]"+\
+	get_question()+": [/color][s]"+"[color="+UserSettings.wrong_hex+"]"+answer.text+"[/color][/s]"+\
 	"[color=9999AE] → [/color]"+\
 	"[color="+UserSettings.correct_hex+"]"+get_correct_answer()+"[/color]"+\
 	"\n"+$VBoxContainer/PrevPairs.text

@@ -15,6 +15,7 @@ signal files_changed
 func _ready():
 	$OpenFileDialog.hide()
 	$SaveFileDialog.hide()
+	gb.file_manager = self
 	
 func _process(delta):
 	for wordfile in opened_files.get_children():

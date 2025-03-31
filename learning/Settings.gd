@@ -28,7 +28,7 @@ func _on_h_slider_drag_ended(value_changed):
 
 
 func _on_filter_wp_timer_timeout():
-	if learning.visible:
+	if visible: #settings is opened
 		filtered_wp_count = learning.filter_wordpairs_count()
 
 
@@ -47,4 +47,4 @@ func _on_button_pressed() -> void:
 
 
 func map(value, lower1, upper1, lower2, upper2):
-	
+	pass

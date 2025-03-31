@@ -9,6 +9,8 @@ add a export to csv button
 add search button
 add option to do mixed direction (randomly chooses direction per word)
 
+make pressing enter on a selected wordpair insert a pair after it, not always at the end of the list
+
 make an actual settings menu
 
 flashcard mode, click to reveal answer, ask user if the got it correct

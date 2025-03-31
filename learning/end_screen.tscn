@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8l3jyvd6rjra"]
 
-[ext_resource type="Script" path="res://learning/EndScreen.gd" id="1_eg1ee"]
+[ext_resource type="Script" uid="uid://c37j1ehq1xgvc" path="res://learning/EndScreen.gd" id="1_eg1ee"]
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_m1r5g"]
 
 [node name="EndScreen" type="VBoxContainer"]

@@ -44,7 +44,7 @@ func _on_save_timer_timeout():
 	file_manager.autosave()
 	UserSettings.save_settings()
 
-#called when the closed
+#called when the application is closed
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		file_manager.autosave()

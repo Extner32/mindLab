@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://58gsiikt2u17"]
 
-[ext_resource type="Script" path="res://words file/word_pair.gd" id="1_cfhog"]
+[ext_resource type="Script" uid="uid://bcxx2imbxt1bg" path="res://words file/word_pair.gd" id="1_cfhog"]
 [ext_resource type="Texture2D" uid="uid://cyfvx4finfivn" path="res://assets/images/close.png" id="2_v5emo"]
 
 [node name="WordPair" type="HBoxContainer"]

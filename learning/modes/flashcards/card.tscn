@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dls3vcb6xgqo3"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_1oxex"]
-[ext_resource type="Script" path="res://learning/modes/flashcards/card.gd" id="1_ocrvs"]
+[ext_resource type="Script" uid="uid://b532s8d2nknel" path="res://learning/modes/flashcards/card.gd" id="1_ocrvs"]
 
 [sub_resource type="Animation" id="Animation_gpeji"]
 length = 0.001
@@ -74,8 +74,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_25htb"]
 _data = {
-"RESET": SubResource("Animation_gpeji"),
-"flip": SubResource("Animation_pwiic")
+&"RESET": SubResource("Animation_gpeji"),
+&"flip": SubResource("Animation_pwiic")
 }
 
 [node name="Card" type="Label"]
@@ -98,7 +98,7 @@ script = ExtResource("1_ocrvs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_25htb")
+&"": SubResource("AnimationLibrary_25htb")
 }
 speed_scale = 1.5
 
