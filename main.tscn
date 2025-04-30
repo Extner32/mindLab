@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://6yuk1qnvfge0"]
+[gd_scene load_steps=17 format=3 uid="uid://6yuk1qnvfge0"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_7tyyd"]
 [ext_resource type="Script" uid="uid://hatdcu6h5jfl" path="res://main.gd" id="1_ip5id"]
@@ -6,6 +6,56 @@
 [ext_resource type="PackedScene" uid="uid://coo8e5vjcprxg" path="res://learning/learning.tscn" id="3_ktrdd"]
 [ext_resource type="Texture2D" uid="uid://syym5i27ajxj" path="res://assets/images/save_icon.png" id="5_0n1y7"]
 [ext_resource type="Texture2D" uid="uid://daxxcyqsadxn0" path="res://assets/images/switch.png" id="5_c45ke"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_272bh"]
+device = -1
+ctrl_pressed = true
+keycode = 83
+unicode = 115
+
+[sub_resource type="Shortcut" id="Shortcut_5vw27"]
+events = [SubResource("InputEventKey_272bh")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_7mycd"]
+device = -1
+ctrl_pressed = true
+keycode = 78
+unicode = 110
+
+[sub_resource type="Shortcut" id="Shortcut_272bh"]
+events = [SubResource("InputEventKey_7mycd")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_5vw27"]
+device = -1
+ctrl_pressed = true
+keycode = 79
+unicode = 111
+
+[sub_resource type="Shortcut" id="Shortcut_kek77"]
+events = [SubResource("InputEventKey_5vw27")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mycd"]
+content_margin_left = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.2, 0.741176, 0.470588, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="InputEventKey" id="InputEventKey_4c57u"]
+device = -1
+ctrl_pressed = true
+keycode = 87
+unicode = 119
+
+[sub_resource type="Shortcut" id="Shortcut_efxa6"]
+events = [SubResource("InputEventKey_4c57u")]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -53,26 +103,38 @@ size_flags_stretch_ratio = 0.0
 [node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
+shortcut = SubResource("Shortcut_5vw27")
 text = "Save"
 icon = ExtResource("5_0n1y7")
 
 [node name="NewFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-size_flags_horizontal = 0
+shortcut = SubResource("Shortcut_272bh")
 text = "New"
 
 [node name="OpenFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-size_flags_horizontal = 0
+shortcut = SubResource("Shortcut_kek77")
 text = "Open"
 
+[node name="StatusText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7mycd")
+bbcode_enabled = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
 [node name="SwitchModeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Switch"
+theme_override_styles/normal = SubResource("StyleBoxFlat_7mycd")
+shortcut = SubResource("Shortcut_efxa6")
 icon = ExtResource("5_c45ke")
 
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]

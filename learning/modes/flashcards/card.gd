@@ -6,13 +6,25 @@ var side := false
 var mouse_overlap := false
 var velocity := Vector2.ZERO
 
-var max_click_time = 0.2
+const MAX_CLICK_TIME = 0.2
 var click_timer = 0
+
+#card doesn't move for LOCK_TIME amount of seconds after flip
+#(to prevent card from drifting when you flip it)
+var LOCK_TIME = 0.2
+const LOCK_TIME_ANDROID = 0.7
+
+var lock_timer = 0
+
 
 
 
 
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	if OS.has_feature("android"):
+		LOCK_TIME = LOCK_TIME_ANDROID
 	
 func side_change(): #gets called from the animation
 	side = !side
@@ -29,13 +41,14 @@ func _process(delta: float) -> void:
 		self.text = get_correct_answer()
 		
 	if mouse_overlap and Input.is_action_just_pressed("LMB"):
-		click_timer = max_click_time
+		click_timer = MAX_CLICK_TIME
 		
 		
 	if Input.is_action_just_released("LMB") and click_timer > 0:
 		animplayer.play("flip")
 		velocity = Vector2.ZERO
-
+		
+		lock_timer = LOCK_TIME
 		click_timer = 0
 	
 	
@@ -44,7 +57,15 @@ func _process(delta: float) -> void:
 	else:
 		click_timer -= delta
 		
-	global_position += velocity * delta
+	if lock_timer <= 0:
+		lock_timer = 0
+	else:
+		lock_timer -= delta
+	
+	if not lock_timer > 0:
+		global_position += velocity * delta
+	else:
+		velocity = Vector2.ZERO
 
 
 func get_question():

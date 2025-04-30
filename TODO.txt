@@ -2,18 +2,17 @@ NEW FEATURES:
 
 make a undo and redo button
 
-rename a file by clicking on the filename in edit mode
 add a button to switch natural and new word
 add a "delete all history button"
 add a export to csv button
 add search button
 add option to do mixed direction (randomly chooses direction per word)
 
-make pressing enter on a selected wordpair insert a pair after it, not always at the end of the list
+
 
 make an actual settings menu
 
-flashcard mode, click to reveal answer, ask user if the got it correct
+
 
 ask (for n != 0 3n else 1) times when the user gets it wrong
 
@@ -44,7 +43,9 @@ nicer end screen
 -show line of red/green squares/dots of the words you got wrong 
 
 DONE:
+flashcard mode, click to reveal answer, ask user if the got it correct
 
+make pressing enter on a selected wordpair insert a pair after it, not always at the end of the list
 
 turn start button into stop button when started
 

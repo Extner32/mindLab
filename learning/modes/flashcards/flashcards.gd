@@ -20,6 +20,8 @@ var mouse_vel := Vector2.ZERO
 var mouse_pos := Vector2.ZERO
 var prev_mouse_pos := Vector2.ZERO
 
+var screen_drag := Vector2.ZERO
+
 @onready var correct_side: Panel = $Cards/CorrectSide
 @onready var wrong_side: Panel = $Cards/WrongSide
 @onready var card: Label = $Cards/Card
@@ -31,11 +33,18 @@ var screen_size := Vector2.ZERO
 signal end(correct:int, wrong:int)
 
 func _ready() -> void:
+	screen_size = get_viewport_rect().size
 	correct_side.get_theme_stylebox("panel").bg_color = UserSettings.correct_color
 	wrong_side.get_theme_stylebox("panel").bg_color = UserSettings.wrong_color
+	drag_pivot = screen_size/2.0
+	card_center = screen_size/2.0
 	reset()
 	set_process(false)
 	
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenDrag:
+		screen_drag = event.velocity
+		
 
 func start(wps):
 	wordpairs = wps
@@ -52,9 +61,12 @@ func _process(delta: float) -> void:
 	screen_size = get_viewport_rect().size
 	
 	progress_bar.value = current_idx
-	prev_mouse_pos = mouse_pos
-	mouse_pos = get_global_mouse_position()
-	mouse_vel = (mouse_pos-prev_mouse_pos)/delta
+	if OS.has_feature("android"):
+		mouse_vel = screen_drag
+	else:
+		prev_mouse_pos = mouse_pos
+		mouse_pos = get_global_mouse_position()
+		mouse_vel = (mouse_pos-prev_mouse_pos)/delta
 	
 	sides_move_dst = screen_size.x*0.2
 	sides_open_threshold = screen_size.x*0.3
@@ -70,8 +82,10 @@ func _process(delta: float) -> void:
 		dragging_card = false
 		
 	if dragging_card:
+		
 		card.velocity = mouse_vel
-		#card.velocity = ((get_global_mouse_position()+drag_pivot) - card.global_position)/delta
+		#var new_velocity = ((get_global_mouse_position()+drag_pivot) - card.global_position)/delta
+		#card.velocity = smooth_exp_vec(card.velocity, new_velocity, delta*50)
 		
 		
 		var rotation_direction = (drag_pivot.y+card.pivot_offset.y)*0.001
@@ -107,12 +121,14 @@ func _process(delta: float) -> void:
 	if card_center.x < -card.size.x/2: #correct
 		correct_words += 1
 		wordpairs[current_idx].history.append(true)
+		Input.vibrate_handheld(100, 1.0)
 		next()
 		new_card()
 
 	if card_center.x > screen_size.x+card.size.x/2: #wrong
 		wrong_words += 1
 		wordpairs[current_idx].history.append(false)
+		Input.vibrate_handheld(100, 1.0)
 		next()
 		new_card()
 		
@@ -140,6 +156,10 @@ func reset():
 func smooth_exp(current, target, delta):
 	return current + ((target - current) * (1 - exp(-delta)));
 	
+func smooth_exp_vec(current:Vector2, target:Vector2, delta:float):
+	return Vector2(smooth_exp(current.x, target.x, delta),
+					smooth_exp(current.y, target.y, delta))
+	
 func new_card():
 	dragging_card = false
 	card.animplayer.play("RESET")
@@ -148,6 +168,7 @@ func new_card():
 	card.rotation = 0
 	card.velocity = Vector2.ZERO
 	card.global_position = screen_size/2-card.pivot_offset
+	
 	
 	
 func next():

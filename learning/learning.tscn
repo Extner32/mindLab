@@ -72,6 +72,7 @@ size_flags_vertical = 1
 
 [node name="DirectionSwapper" type="HBoxContainer" parent="Start/ScrollContainer/Settings"]
 layout_mode = 2
+alignment = 1
 
 [node name="word1" type="Label" parent="Start/ScrollContainer/Settings/DirectionSwapper"]
 layout_mode = 2
@@ -81,6 +82,7 @@ text = "natural word"
 [node name="Button" type="Button" parent="Start/ScrollContainer/Settings/DirectionSwapper"]
 custom_minimum_size = Vector2(80, 42)
 layout_mode = 2
+size_flags_horizontal = 4
 icon = ExtResource("5_tlnlj")
 icon_alignment = 1
 expand_icon = true

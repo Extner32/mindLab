@@ -64,6 +64,7 @@ custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "answer"
+keep_editing_on_text_submit = true
 
 [node name="StopButton" type="Button" parent="VBoxContainer/HFlowContainer"]
 custom_minimum_size = Vector2(42, 42)

@@ -25,6 +25,7 @@ ok_button_text = "Open"
 file_mode = 1
 access = 2
 filters = PackedStringArray("*.mLab")
+use_native_dialog = true
 
 [node name="SaveFileDialog" type="FileDialog" parent="."]
 process_mode = 3
@@ -34,6 +35,7 @@ size = Vector2i(474, 500)
 theme = ExtResource("2_em32t")
 access = 2
 filters = PackedStringArray("*.mLab")
+use_native_dialog = true
 
 [node name="FileOpenedDialog" type="AcceptDialog" parent="."]
 initial_position = 2

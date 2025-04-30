@@ -106,7 +106,7 @@ func open_file(filepath, collapsed=false):
 			elif bit == "1":
 				history.append(true)
 		
-		file.add_pair(line[0], line[1], history)
+		file.insert_pair(line[0], line[1], history)
 		
 	file.file_manager = self
 	file.path = filepath
@@ -144,6 +144,8 @@ func save_all_files():
 
 func autosave():
 	if UserSettings.dict["autosave"]:
+		#vvv this is super annoying
+		#gb.status("[color="+UserSettings.correct_hex+"]autosaved[/color]")
 		save_all_files()
 
 func open_files():

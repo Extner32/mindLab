@@ -11,15 +11,16 @@ var focused_pair = null
 
 
 func _ready():
-	$HBoxContainer/FileName.text = path.get_file()
 	$Wordpairs.hide()
 
-func add_pair(new_word, nat_word, history):
+func insert_pair(new_word, nat_word, history:Array, idx:=-1):
 	var pair = preload("res://words file/word_pair.tscn").instantiate()
 	$Wordpairs.add_child(pair)
+	$Wordpairs.move_child(pair, idx)
 	pair.init(new_word, nat_word, history, path, self)
 	wordpair_count = $Wordpairs.get_child_count()
 	changed = true
+	return pair
 
 func get_pair(idx):
 	return $Wordpairs.get_child(idx)
@@ -31,15 +32,15 @@ func _process(delta):
 			focused_pair = wps[i]
 			
 			if Input.is_action_just_pressed("enter"):
-				if i == (wordpair_count-1): 
-					add_pair("", "", [])
+				if Input.is_action_pressed("shift"):
+					insert_pair("", "", [], i)
+					$Wordpairs.get_child(i).new_word_line.grab_focus()
+					focused_pair = $Wordpairs.get_child(i)
+				else:
+					insert_pair("", "", [], i+1)
 					$Wordpairs.get_child(i+1).new_word_line.grab_focus()
 					focused_pair = $Wordpairs.get_child(i+1)
-				else:
-					var pair = $Wordpairs.get_child(i+1)
-					pair.new_word_line.grab_focus()
-					pair.new_word_line.caret_column = len(pair.new_word_line.text)
-					focused_pair = pair
+				
 					
 			if Input.is_action_just_pressed("delete") and $Wordpairs.get_child(i).nat_word_line.text == "":
 				$Wordpairs.get_child(i).delete()
@@ -52,7 +53,7 @@ func _process(delta):
 		else:
 			focused_pair = null
 			
-	$HBoxContainer/FileName.text = path.get_file() + " | " + str(wordpair_count)
+	$HBoxContainer/FileName.text = path.get_file().get_basename() + " | " + str(wordpair_count)
 		
 
 
@@ -60,7 +61,8 @@ func _on_hide_button_pressed():
 	$Wordpairs.visible = !$Wordpairs.visible
 
 func _on_add_button_pressed():
-	add_pair("", "", [])
+	insert_pair("", "", [])
+	$Wordpairs.visible = true
 	changed = true
 
 

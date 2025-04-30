@@ -20,6 +20,9 @@ func combine_files(opened_files):
 	for file in opened_files.get_children():
 		for i in range(file.wordpair_count):
 			all_wordpairs.append(file.get_pair(i))
+			
+func _process(delta: float) -> void:
+	combine_files(file_manager.opened_files)
 
 func get_score(history: Array):
 	var sum = 0
