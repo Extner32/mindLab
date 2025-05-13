@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://da21ifqd6c1dh"]
+[gd_scene load_steps=8 format=3 uid="uid://da21ifqd6c1dh"]
 
 [ext_resource type="PackedScene" uid="uid://dls3vcb6xgqo3" path="res://learning/modes/flashcards/card.tscn" id="1_7k20s"]
 [ext_resource type="Script" uid="uid://dccqlrfmt6r3s" path="res://learning/modes/flashcards/flashcards.gd" id="1_7sq4p"]
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_18njg"]
-[ext_resource type="PackedScene" uid="uid://b8l3jyvd6rjra" path="res://learning/end_screen.tscn" id="3_visqf"]
 [ext_resource type="Texture2D" uid="uid://cmisq8j2xypgg" path="res://assets/images/progressbar.png" id="4_6qlag"]
 [ext_resource type="Texture2D" uid="uid://bxijn5evpqd7n" path="res://assets/images/stop.png" id="5_e188h"]
 
@@ -123,9 +122,4 @@ icon = ExtResource("5_e188h")
 icon_alignment = 1
 expand_icon = true
 
-[node name="EndScreen" parent="." instance=ExtResource("3_visqf")]
-visible = false
-layout_mode = 1
-
 [connection signal="pressed" from="Cards/Control/StopButton" to="." method="_on_stop_button_pressed"]
-[connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]

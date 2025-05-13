@@ -22,9 +22,6 @@ func start(wps):
 	wordpairs.shuffle()
 	$VBoxContainer/Bars/CorrectBar.max_value = len(wps)
 	$VBoxContainer/Bars/WrongBar.max_value = len(wps)
-	
-	$VBoxContainer.show()
-	$EndScreen.hide()
 	set_process(true)
 	
 func _process(delta: float) -> void:
@@ -46,12 +43,9 @@ func _process(delta: float) -> void:
 			return
 			
 func exit():
-	$VBoxContainer.hide()
-	$EndScreen.show_results(correct_words, wrong_words)
-	set_process(false)
-
-func _on_end_screen_closed() -> void:
 	emit_signal("end", correct_words, wrong_words)
+	set_process(false)
+	
 
 
 func correct_answer():
@@ -93,6 +87,7 @@ func reset():
 	current_idx = 0
 	correct_words = 0
 	wrong_words = 0
+	answer.text = ""
 	$VBoxContainer/PrevPairs.text = ""
 
 

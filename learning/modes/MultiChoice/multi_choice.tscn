@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://21riwb3dum6n"]
+
+[ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_jmnf8"]
+[ext_resource type="Texture2D" uid="uid://bxijn5evpqd7n" path="res://assets/images/stop.png" id="2_ao5mr"]
+[ext_resource type="Script" uid="uid://ditxwhn0mf7sy" path="res://learning/modes/MultiChoice/multi_choice.gd" id="2_s68eu"]
+[ext_resource type="PackedScene" uid="uid://7hjdym7mqaax" path="res://learning/modes/MultiChoice/choice.tscn" id="4_mbeqs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao5mr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s68eu"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbeqs"]
+bg_color = Color(0.841679, 0.504763, 0.26286, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MultiChoice" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jmnf8")
+script = ExtResource("2_s68eu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bars" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme = ExtResource("1_jmnf8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ao5mr")
+
+[node name="CorrectBar" type="ProgressBar" parent="VBoxContainer/Bars"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jmnf8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s68eu")
+step = 1.0
+rounded = true
+show_percentage = false
+
+[node name="WrongBar" type="ProgressBar" parent="VBoxContainer/Bars"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_jmnf8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mbeqs")
+step = 1.0
+rounded = true
+fill_mode = 1
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="question" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StopButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+icon = ExtResource("2_ao5mr")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Choices" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Choice1" parent="VBoxContainer/Choices" instance=ExtResource("4_mbeqs")]
+layout_mode = 2
+
+[node name="Choice2" parent="VBoxContainer/Choices" instance=ExtResource("4_mbeqs")]
+layout_mode = 2
+
+[node name="Choice3" parent="VBoxContainer/Choices" instance=ExtResource("4_mbeqs")]
+layout_mode = 2
+
+[connection signal="chosen" from="VBoxContainer/Choices/Choice1" to="." method="_on_chosen"]
+[connection signal="chosen" from="VBoxContainer/Choices/Choice2" to="." method="_on_chosen"]
+[connection signal="chosen" from="VBoxContainer/Choices/Choice3" to="." method="_on_chosen"]

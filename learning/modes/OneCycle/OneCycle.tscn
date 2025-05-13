@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://u26xlqb7egfh"]
+[gd_scene load_steps=7 format=3 uid="uid://u26xlqb7egfh"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_honhx"]
 [ext_resource type="Script" uid="uid://dc3ijlwvw1xux" path="res://learning/modes/OneCycle/one_cycle.gd" id="2_gikmq"]
 [ext_resource type="Texture2D" uid="uid://bxijn5evpqd7n" path="res://assets/images/stop.png" id="2_s62ww"]
-[ext_resource type="PackedScene" uid="uid://b8l3jyvd6rjra" path="res://learning/end_screen.tscn" id="4_pd11d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cu47r"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -21,7 +20,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="Onecycle" type="Control"]
+[node name="OneCycle" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,9 +98,4 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 bbcode_enabled = true
 shortcut_keys_enabled = false
 
-[node name="EndScreen" parent="." instance=ExtResource("4_pd11d")]
-visible = false
-layout_mode = 1
-
 [connection signal="pressed" from="VBoxContainer/HFlowContainer/StopButton" to="." method="_on_stop_button_pressed"]
-[connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://coo8e5vjcprxg"]
+[gd_scene load_steps=10 format=3 uid="uid://coo8e5vjcprxg"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_b3rfn"]
 [ext_resource type="Script" uid="uid://c5srmwg7ewjlm" path="res://learning/learning.gd" id="1_xqwy1"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dgxlvgv7wsjqs" path="res://learning/modes/Repeat/Repeat.tscn" id="6_144pf"]
 [ext_resource type="PackedScene" uid="uid://u26xlqb7egfh" path="res://learning/modes/OneCycle/OneCycle.tscn" id="6_em8yn"]
 [ext_resource type="PackedScene" uid="uid://da21ifqd6c1dh" path="res://learning/modes/flashcards/flashcards.tscn" id="7_d4mbq"]
+[ext_resource type="PackedScene" uid="uid://b8l3jyvd6rjra" path="res://learning/end_screen.tscn" id="8_8duee"]
+[ext_resource type="PackedScene" uid="uid://21riwb3dum6n" path="res://learning/modes/MultiChoice/multi_choice.tscn" id="8_b0btn"]
 
 [node name="Learning" type="Control"]
 layout_mode = 3
@@ -82,7 +84,7 @@ text = "natural word"
 [node name="Button" type="Button" parent="Start/ScrollContainer/Settings/DirectionSwapper"]
 custom_minimum_size = Vector2(80, 42)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 4
 icon = ExtResource("5_tlnlj")
 icon_alignment = 1
 expand_icon = true
@@ -112,7 +114,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 
-[node name="Onecycle" parent="LearnModes" instance=ExtResource("6_em8yn")]
+[node name="OneCycle" parent="LearnModes" instance=ExtResource("6_em8yn")]
 layout_mode = 1
 
 [node name="Repeat" parent="LearnModes" instance=ExtResource("6_144pf")]
@@ -121,10 +123,19 @@ layout_mode = 1
 [node name="Flashcards" parent="LearnModes" instance=ExtResource("7_d4mbq")]
 layout_mode = 1
 
+[node name="MultiChoice" parent="LearnModes" instance=ExtResource("8_b0btn")]
+layout_mode = 1
+
+[node name="EndScreen" parent="." instance=ExtResource("8_8duee")]
+visible = false
+layout_mode = 1
+
 [connection signal="timeout" from="Start/ScrollContainer/Settings/FilterWPTimer" to="Start/ScrollContainer/Settings" method="_on_filter_wp_timer_timeout"]
 [connection signal="drag_ended" from="Start/ScrollContainer/Settings/DifficultySlider/HSlider" to="Start/ScrollContainer/Settings" method="_on_h_slider_drag_ended"]
 [connection signal="pressed" from="Start/ScrollContainer/Settings/DirectionSwapper/Button" to="Start/ScrollContainer/Settings" method="_on_button_pressed"]
 [connection signal="pressed" from="Start/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="end" from="LearnModes/Onecycle" to="." method="_on_onecycle_end"]
-[connection signal="end" from="LearnModes/Repeat" to="." method="_on_repeat_end"]
-[connection signal="end" from="LearnModes/Flashcards" to="." method="_on_flashcards_end"]
+[connection signal="end" from="LearnModes/OneCycle" to="." method="_on_learning_end"]
+[connection signal="end" from="LearnModes/Repeat" to="." method="_on_learning_end"]
+[connection signal="end" from="LearnModes/Flashcards" to="." method="_on_learning_end"]
+[connection signal="end" from="LearnModes/MultiChoice" to="." method="_on_learning_end"]
+[connection signal="closed" from="EndScreen" to="." method="_on_end_screen_closed"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hjdym7mqaax"]
+
+[ext_resource type="Script" uid="uid://d27gypxgwygfo" path="res://learning/modes/MultiChoice/choice.gd" id="1_vjagk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjagk"]
+
+[node name="Choice" type="Button"]
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vjagk")
+script = ExtResource("1_vjagk")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

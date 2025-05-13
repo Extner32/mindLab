@@ -4,8 +4,8 @@ extends VBoxContainer
 
 var filtered_wp_count = 0
 
-var learn_modes_names = ["One cycle", "Repeat", "Flashcards"]
-var learn_modes = [UserSettings.learn_modes.ONE_CYCLE, UserSettings.learn_modes.REPEAT, UserSettings.learn_modes.FLASHCARDS]
+var learn_modes_names = ["One cycle", "Repeat", "Flashcards", "Multiple Choice"]
+var learn_modes = [UserSettings.learn_modes.ONE_CYCLE, UserSettings.learn_modes.REPEAT, UserSettings.learn_modes.FLASHCARDS, UserSettings.learn_modes.MULTI_CHOICE]
 
 func _ready():
 	filtered_wp_count = learning.filter_wordpairs_count()

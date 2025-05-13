@@ -50,8 +50,6 @@ func start(wps):
 	wordpairs = wps
 	wordpairs.shuffle()
 	progress_bar.max_value = len(wps)
-	$EndScreen.hide()
-	$Cards.show()
 	reset()
 	set_process(true)
 	new_card()
@@ -135,8 +133,7 @@ func _process(delta: float) -> void:
 	mouse_vel = Vector2.ZERO
 		
 func exit():
-	$EndScreen.show_results(correct_words, wrong_words)
-	$Cards.hide()
+	emit_signal("end", correct_words, wrong_words)
 	set_process(false)
 	
 func reset():
@@ -149,9 +146,6 @@ func reset():
 	mouse_vel = Vector2.ZERO
 	mouse_pos = Vector2.ZERO
 	prev_mouse_pos = Vector2.ZERO
-	
-	$EndScreen.hide()
-	$Cards.show()
 
 func smooth_exp(current, target, delta):
 	return current + ((target - current) * (1 - exp(-delta)));
@@ -187,7 +181,3 @@ func close_wrong_side(delta):
 
 func _on_stop_button_pressed() -> void:
 	exit()
-
-
-func _on_end_screen_closed() -> void:
-	emit_signal("end", correct_words, wrong_words)

@@ -61,6 +61,7 @@ func filter_wordpairs_count():
 func reset():
 	$Start.show()
 	$LearnModes.hide()
+	$EndScreen.hide()
 	current_learn_mode = null
 	
 func start_learn_mode():
@@ -76,11 +77,13 @@ func start_learn_mode():
 	
 	match UserSettings.learn_mode:
 		UserSettings.learn_modes.ONE_CYCLE:
-			current_learn_mode = $LearnModes/Onecycle
+			current_learn_mode = $LearnModes/OneCycle
 		UserSettings.learn_modes.REPEAT:
 			current_learn_mode = $LearnModes/Repeat
 		UserSettings.learn_modes.FLASHCARDS:
 			current_learn_mode = $LearnModes/Flashcards
+		UserSettings.learn_modes.MULTI_CHOICE:
+			current_learn_mode = $LearnModes/MultiChoice
 			
 	current_learn_mode.start(filter_wordpairs())
 	current_learn_mode.show()
@@ -88,18 +91,22 @@ func start_learn_mode():
 func _on_start_button_pressed() -> void:
 	start_learn_mode()
 
-func _on_onecycle_end(correct: int, wrong: int) -> void:
+
+
+func _on_end_screen_closed() -> void:
+	$Start.show()
 	reset()
 
-func _on_repeat_end(correct: int, wrong: int) -> void:
-	reset()
-
-func _on_flashcards_end(correct: int, wrong: int) -> void:
-	reset()
-
+	
 
 func _on_file_manager_files_changed() -> void:
 	if current_learn_mode != null:
 		print("changed")
 		combine_files(file_manager.opened_files)
 		start_learn_mode()
+
+
+func _on_learning_end(correct: int, wrong: int) -> void:
+	$Start.hide()
+	$LearnModes.hide()
+	$EndScreen.show_results(correct, wrong)
