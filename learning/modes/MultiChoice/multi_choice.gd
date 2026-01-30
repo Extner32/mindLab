@@ -15,12 +15,6 @@ func _ready() -> void:
 	set_process(false)
 	$VBoxContainer/Bars/CorrectBar.get_theme_stylebox("fill").bg_color = UserSettings.correct_color
 	$VBoxContainer/Bars/WrongBar.get_theme_stylebox("fill").bg_color = UserSettings.wrong_color
-	for child in $VBoxContainer/Choices.get_children():
-		var stylebox = child.get_theme_stylebox("dark_theme", "normal")
-		child.add_theme_stylebox_override("hover", stylebox)
-		#get_stylebox("dark_theme", "normal").duplicate()
-		#var stylebox = child.theme.
-		#child.add_theme_stylebox_override("hover", stylebox)
 
 
 func start(wps):

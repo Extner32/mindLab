@@ -2,11 +2,14 @@ NEW FEATURES:
 
 make a undo and redo button
 
-add a button to switch natural and new word
+add a button to switch natural and new word (directly in the file)
 add a "delete all history button"
 add a export to csv button
 add search button
 add option to do mixed direction (randomly chooses direction per word)
+make wordpairs selectable (to preform multiple actions at once)
+make up and down arrow move the selected wordpair up and down
+make pressing backspace delete a wp only when both natural and new word are gone
 
 
 
