@@ -15,7 +15,8 @@ var best_score = 1
 @export var file_manager: Control
 
 func _ready():
-	$Start/ScrollContainer/Settings/SegmentSizeSlider/SegmentsHSlider.max_value = MAX_SEGMENT_SIZE+1
+	settings.get_node("SegmentSizeSlider/SegmentsHSlider").max_value = MAX_SEGMENT_SIZE+1
+	settings.get_node("SegmentSizeSlider/SegmentsHSlider").value = UserSettings.res.segment_size
 	reset()
 	
 func combine_files(opened_files):
@@ -81,11 +82,11 @@ func start_learn_mode():
 	
 	var current_learn_mode = $LearnModes.get_node(UserSettings.res.current_learn_mode)
 	
-	var segment_size = int(settings.get_node("SegmentSizeSlider/SegmentsHSlider").value)
-	if segment_size == MAX_SEGMENT_SIZE+1: #aka no segments
+	UserSettings.res.segment_size = int(settings.get_node("SegmentSizeSlider/SegmentsHSlider").value)
+	if UserSettings.res.segment_size == MAX_SEGMENT_SIZE+1: #aka no segments
 		current_learn_mode.start(filter_wordpairs(), len(all_wordpairs)+1)
 	else:
-		current_learn_mode.start(filter_wordpairs(), segment_size)
+		current_learn_mode.start(filter_wordpairs(), UserSettings.res.segment_size)
 
 	
 	current_learn_mode.show()

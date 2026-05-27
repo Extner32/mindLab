@@ -34,8 +34,13 @@ func start(_wordpairs, _segment_size: int):
 	wordpairs = _wordpairs
 	segment_size = min(_segment_size, len(wordpairs))
 	var last_segment_size := len(wordpairs) % segment_size
+	
 	@warning_ignore("integer_division")
-	segment_count = ((len(wordpairs)-last_segment_size)/segment_size) + 1
+	segment_count = ((len(wordpairs)/segment_size))
+	if last_segment_size != 0:
+		segment_count += 1
+	
+
 
 	current_segment_queue = _get_segment(0)
 	question.text = get_question()
@@ -60,6 +65,7 @@ func on_answer():
 		on_wrong_answer(answer.text)
 	
 	answer.text = ""
+	UserSettings.res.total_words_learned += 1
 
 func exit():
 	emit_signal("end", correct_words, wrong_words)

@@ -1,6 +1,6 @@
 extends Node
 
-var res = preload("res://global/DefaultUserSettings.tres").duplicate_deep()
+var res := load("res://global/DefaultUserSettings.tres").duplicate_deep()
 
 var file_seperator = "@"
 var settings_file_name = "UserSettings.tres"
@@ -14,10 +14,14 @@ var wrong_hex = wrong_color.to_html()
 
 
 func load_settings():
+	if not FileAccess.file_exists(get_file_path()):
+		res = load("res://global/DefaultUserSettings.tres").duplicate_deep()
+		return
 	res = ResourceLoader.load(get_file_path())
 	
 func save_settings():
 	ResourceSaver.save(res, get_file_path())
+	
 func get_base_dir():
 	return "res://" if OS.has_feature("editor") else OS.get_executable_path().get_base_dir()
 
