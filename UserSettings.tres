@@ -6,6 +6,5 @@
 script = ExtResource("1_p3fyl")
 learn_modes = [&"Repeat", &"OneCycle"]
 current_learn_mode = "Repeat"
-reversed_direction = true
-segment_size = 4
+segment_size = 2
 metadata/_custom_type_script = "uid://eccsw5ij1ssm"

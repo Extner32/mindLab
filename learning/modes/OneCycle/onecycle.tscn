@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://7tlp0u8n7ljn"]
+
+[ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_q4qav"]
+[ext_resource type="Script" uid="uid://g6qls72og368" path="res://learning/modes/OneCycle/onecycle.gd" id="2_x7ti6"]
+[ext_resource type="PackedScene" uid="uid://dh3oj7d0msc5h" path="res://learning/learnprogress/learnprogress.tscn" id="3_4swwh"]
+[ext_resource type="Texture2D" uid="uid://66r6d06ovatn" path="res://assets/images/stop.png" id="4_hm740"]
+
+[node name="OneCycle" type="Control" unique_id=685522046]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_q4qav")
+script = ExtResource("2_x7ti6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=20514800]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LearnProgress" parent="VBoxContainer" unique_id=1453592593 instance=ExtResource("3_4swwh")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer" unique_id=697827309]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Question" type="Label" parent="VBoxContainer/HFlowContainer" unique_id=1310134177]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Answer" type="LineEdit" parent="VBoxContainer/HFlowContainer" unique_id=21782752]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "answer"
+keep_editing_on_text_submit = true
+caret_blink = true
+
+[node name="StopButton" type="Button" parent="VBoxContainer/HFlowContainer" unique_id=1159717104]
+custom_minimum_size = Vector2(42, 42)
+layout_mode = 2
+icon = ExtResource("4_hm740")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PrevPairs" type="RichTextLabel" parent="VBoxContainer" unique_id=1001202613]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+shortcut_keys_enabled = false
+
+[connection signal="pressed" from="VBoxContainer/HFlowContainer/StopButton" to="." method="_on_stop_button_pressed"]

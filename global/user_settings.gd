@@ -1,7 +1,5 @@
 extends Node
 
-@onready var base_dir = "res://" if OS.has_feature("editor") else OS.get_executable_path().get_base_dir()
-
 var res = preload("res://global/DefaultUserSettings.tres").duplicate_deep()
 
 var file_seperator = "@"
@@ -20,6 +18,8 @@ func load_settings():
 	
 func save_settings():
 	ResourceSaver.save(res, get_file_path())
+func get_base_dir():
+	return "res://" if OS.has_feature("editor") else OS.get_executable_path().get_base_dir()
 
 func get_file_path():
-	return base_dir+"/"+settings_file_name
+	return get_base_dir()+"/"+settings_file_name

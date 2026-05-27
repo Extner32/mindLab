@@ -3,8 +3,11 @@ extends Control
 @onready var file_manager = $MarginContainer/VBoxContainer/FileManager
 @onready var learning = $MarginContainer/VBoxContainer/Learning
 
+func _enter_tree() -> void:
+	UserSettings.load_settings()
+
 func _ready():
-	# UserSettings.load_settings()
+	
 	$SaveTimer.wait_time = UserSettings.res.save_timer
 	get_tree().auto_accept_quit = false
 	for arg in OS.get_cmdline_args():
@@ -70,4 +73,5 @@ func _on_save_timer_timeout():
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		file_manager.autosave()
+		UserSettings.save_settings()
 		get_tree().quit()
