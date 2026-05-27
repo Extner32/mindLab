@@ -4,8 +4,8 @@ extends Control
 @onready var learning = $MarginContainer/VBoxContainer/Learning
 
 func _ready():
-	UserSettings.load_settings()
-	$SaveTimer.wait_time = UserSettings.dict["save_timer"]
+	# UserSettings.load_settings()
+	$SaveTimer.wait_time = UserSettings.res.save_timer
 	get_tree().auto_accept_quit = false
 	for arg in OS.get_cmdline_args():
 		if arg.get_extension() == "mLab":
@@ -16,12 +16,19 @@ func _ready():
 		OS.request_permissions()
 		get_tree().root.content_scale_factor = 2.0
 		$MarginContainer/VBoxContainer/HBoxContainer/StatusText.hide()
+		
+	$MarginContainer/VBoxContainer/HBoxContainer/SwitchModeButton.icon = preload("res://assets/images/Play.svg")
+		
 func _process(delta: float) -> void:
 	$MarginContainer/VBoxContainer/HBoxContainer/StatusText.text = gb.status_text
 	
 
 func _on_file_manager_files_changed():
-	learning.combine_files(file_manager.opened_files)
+	print("files changed")
+	file_manager.autosave()
+	
+func _on_file_manager_files_edited() -> void:
+	print("files edited")
 	file_manager.autosave()
 	
 	
@@ -43,12 +50,15 @@ func _on_switch_mode_button_pressed():
 		print("file manager")
 		file_manager.hide()
 		learning.show()
-
+		$MarginContainer/VBoxContainer/HBoxContainer/SwitchModeButton.text = "Files"
+		$MarginContainer/VBoxContainer/HBoxContainer/SwitchModeButton.icon = preload("res://assets/images/Pause.svg")
+		
 	elif learning.visible:
 		print("learning")
-		file_manager.check_files_changed()
 		learning.hide()
 		file_manager.show()
+		$MarginContainer/VBoxContainer/HBoxContainer/SwitchModeButton.text = "Learn"
+		$MarginContainer/VBoxContainer/HBoxContainer/SwitchModeButton.icon = preload("res://assets/images/Play.svg")
 		
 
 

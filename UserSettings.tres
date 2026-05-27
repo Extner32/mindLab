@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UserSettingsRes" format=3]
+
+[ext_resource type="Script" path="res://global/user_settings_res.gd" id="1_p3fyl"]
+
+[resource]
+script = ExtResource("1_p3fyl")
+learn_modes = [&"Repeat", &"OneCycle"]
+current_learn_mode = "Repeat"
+reversed_direction = true
+segment_size = 4
+metadata/_custom_type_script = "uid://eccsw5ij1ssm"

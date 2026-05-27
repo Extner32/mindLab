@@ -1,7 +1,9 @@
 extends Control
 
+const MAX_SEGMENT_SIZE = 50
+
 var all_wordpairs = []
-var current_learn_mode = null
+var learning := false
 
 #1 means all words are included, 0: only the words that you have got wrong every time
 var score_filter = 1 
@@ -13,16 +15,14 @@ var best_score = 1
 @export var file_manager: Control
 
 func _ready():
+	$Start/ScrollContainer/Settings/SegmentSizeSlider/SegmentsHSlider.max_value = MAX_SEGMENT_SIZE+1
 	reset()
 	
 func combine_files(opened_files):
-	all_wordpairs = []
+	all_wordpairs.clear()
 	for file in opened_files.get_children():
 		for i in range(file.wordpair_count):
 			all_wordpairs.append(file.get_pair(i))
-			
-func _process(delta: float) -> void:
-	combine_files(file_manager.opened_files)
 
 func get_score(history: Array):
 	var sum = 0
@@ -47,7 +47,10 @@ func filter_wordpairs():
 			
 func filter_wordpairs_count():
 	var count = 0
+	
 	for wp in all_wordpairs:
+		if not is_instance_valid(wp):
+			continue
 		var score = get_score(wp.history)
 		if score < worst_score:
 			worst_score = score
@@ -62,9 +65,10 @@ func reset():
 	$Start.show()
 	$LearnModes.hide()
 	$EndScreen.hide()
-	current_learn_mode = null
+	learning = false
 	
 func start_learn_mode():
+	reset()
 	if len(all_wordpairs) == 0:
 		$NoFilesDialog.show()
 		return
@@ -75,38 +79,45 @@ func start_learn_mode():
 	for mode in $LearnModes.get_children():
 		mode.hide()
 	
-	match UserSettings.learn_mode:
-		UserSettings.learn_modes.ONE_CYCLE:
-			current_learn_mode = $LearnModes/OneCycle
-		UserSettings.learn_modes.REPEAT:
-			current_learn_mode = $LearnModes/Repeat
-		UserSettings.learn_modes.FLASHCARDS:
-			current_learn_mode = $LearnModes/Flashcards
-		UserSettings.learn_modes.MULTI_CHOICE:
-			current_learn_mode = $LearnModes/MultiChoice
-			
-	current_learn_mode.start(filter_wordpairs())
+	var current_learn_mode = $LearnModes.get_node(UserSettings.res.current_learn_mode)
+	
+	var segment_size = int(settings.get_node("SegmentSizeSlider/SegmentsHSlider").value)
+	if segment_size == MAX_SEGMENT_SIZE+1: #aka no segments
+		current_learn_mode.start(filter_wordpairs(), len(all_wordpairs)+1)
+	else:
+		current_learn_mode.start(filter_wordpairs(), segment_size)
+
+	
 	current_learn_mode.show()
+	learning = true
 
 func _on_start_button_pressed() -> void:
 	start_learn_mode()
-
-
 
 func _on_end_screen_closed() -> void:
 	$Start.show()
 	reset()
 
-	
-
 func _on_file_manager_files_changed() -> void:
-	if current_learn_mode != null:
-		print("changed")
-		combine_files(file_manager.opened_files)
+	combine_files(file_manager.opened_files)
+	if len(all_wordpairs) == 0:
+		$LearnModes.get_node(UserSettings.res.current_learn_mode).exit()
+		_on_learning_end(0, 0)
+	
+	if learning:
 		start_learn_mode()
+
+func _on_file_manager_files_edited() -> void:
+	combine_files(file_manager.opened_files)
 
 
 func _on_learning_end(correct: int, wrong: int) -> void:
+	learning = false
+	if correct+wrong == 0:
+		$LearnModes.hide()
+		$Start.show()
+		return
+		
 	$Start.hide()
 	$LearnModes.hide()
 	$EndScreen.show_results(correct, wrong)

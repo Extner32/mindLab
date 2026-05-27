@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqn58tx5ka2py"]
+[gd_scene format=3 uid="uid://bqn58tx5ka2py"]
 
 [ext_resource type="Script" uid="uid://dfkhl1pg6f7h2" path="res://words file/words_file.gd" id="1_61l7c"]
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_q77f5"]
-[ext_resource type="Texture2D" uid="uid://1un5eh7k7hct" path="res://assets/images/add.png" id="3_4sin0"]
-[ext_resource type="Texture2D" uid="uid://cbu8xfckiseb6" path="res://assets/images/hide.png" id="3_424jy"]
-[ext_resource type="Texture2D" uid="uid://cyfvx4finfivn" path="res://assets/images/close.png" id="4_bsrwb"]
+[ext_resource type="Texture2D" uid="uid://baifyc4rlp2bs" path="res://assets/images/GuiVisibilityVisible.svg" id="3_q7ul6"]
+[ext_resource type="Texture2D" uid="uid://dgmgju736duax" path="res://assets/images/Add.svg" id="4_7jjoe"]
+[ext_resource type="Texture2D" uid="uid://bftj2q1gwtaef" path="res://assets/images/Close.svg" id="5_4fu4l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iuy60"]
 content_margin_left = 15.0
@@ -17,7 +17,18 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="WordsFile" type="VBoxContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_167tk"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.67, 0.047, 0.325, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="WordsFile" type="VBoxContainer" unique_id=467902699]
 custom_minimum_size = Vector2(200, 40)
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,10 +39,10 @@ size_flags_horizontal = 3
 theme = ExtResource("1_q77f5")
 script = ExtResource("1_61l7c")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=45429391]
 layout_mode = 2
 
-[node name="FileName" type="LineEdit" parent="HBoxContainer"]
+[node name="FileName" type="LineEdit" parent="HBoxContainer" unique_id=1911387453]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_uneditable_color = Color(0.137255, 0.137255, 0.156863, 1)
@@ -39,25 +50,26 @@ theme_override_styles/read_only = SubResource("StyleBoxFlat_iuy60")
 text = "<filename>"
 editable = false
 
-[node name="HideButton" type="Button" parent="HBoxContainer"]
+[node name="HideButton" type="Button" parent="HBoxContainer" unique_id=1073262680]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
-icon = ExtResource("3_424jy")
+icon = ExtResource("3_q7ul6")
 icon_alignment = 1
 
-[node name="AddButton" type="Button" parent="HBoxContainer"]
+[node name="AddButton" type="Button" parent="HBoxContainer" unique_id=1246089542]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
-icon = ExtResource("3_4sin0")
+icon = ExtResource("4_7jjoe")
 icon_alignment = 1
 
-[node name="CloseButton" type="Button" parent="HBoxContainer"]
+[node name="CloseButton" type="Button" parent="HBoxContainer" unique_id=1350580588]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
-icon = ExtResource("4_bsrwb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_167tk")
+icon = ExtResource("5_4fu4l")
 icon_alignment = 1
 
-[node name="Wordpairs" type="VBoxContainer" parent="."]
+[node name="Wordpairs" type="VBoxContainer" parent="." unique_id=1258566163]
 layout_mode = 2
 size_flags_vertical = 3
 

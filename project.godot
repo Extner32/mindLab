@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="mindLab"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.137255, 0.137255, 0.156863, 1)
 boot_splash/image="res://assets/images/splash_screen.png"
 config/icon="res://assets/images/logo.svg"
@@ -28,8 +32,10 @@ gdscript/warnings/unused_parameter=0
 
 [display]
 
+window/energy_saving/keep_screen_on=false
 window/subwindows/embed_subwindows=false
 window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
 window/handheld/orientation=1
 
 [file_customization]

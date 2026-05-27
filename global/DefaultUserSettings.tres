@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UserSettingsRes" format=3 uid="uid://e2jv2voom5ks"]
+
+[ext_resource type="Script" uid="uid://eccsw5ij1ssm" path="res://global/user_settings_res.gd" id="1_ovvqn"]
+
+[resource]
+script = ExtResource("1_ovvqn")
+segment_size = 20
+metadata/_custom_type_script = "uid://eccsw5ij1ssm"

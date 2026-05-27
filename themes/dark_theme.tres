@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=33 format=4 uid="uid://bgr3x6jwhynme"]
+[gd_resource type="Theme" format=4 uid="uid://bgr3x6jwhynme"]
 
 [ext_resource type="Texture2D" uid="uid://b4o4b2gasj74u" path="res://assets/images/slider.png" id="1_nu7sq"]
 [ext_resource type="FontFile" uid="uid://bhip5oc0xb0mh" path="res://assets/IBMPlexMono-Regular.ttf" id="1_pf5r3"]
@@ -63,7 +63,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckvnd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qed0x"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
@@ -174,6 +174,15 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckvnd"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.341176, 0.137255, 0.529412, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfvsb"]
 bg_color = Color(0.137255, 0.137255, 0.156863, 1)
 corner_radius_top_left = 20
@@ -193,15 +202,15 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqhuk"]
-content_margin_left = 15.0
-content_margin_top = 10.0
-content_margin_right = 15.0
-content_margin_bottom = 10.0
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
 bg_color = Color(0.2, 0.2, 0.227451, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qed0x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdsm7"]
 bg_color = Color(0.2, 0.2, 0.227451, 0)
@@ -307,6 +316,15 @@ font_name = "IBM Plex Mono"
 style_name = "Regular"
 font_style = 4
 msdf_pixel_range = 8
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 17.0
 cache/0/16/0/descent = 5.0
 cache/0/16/0/underline_position = 2.71875
@@ -1025,7 +1043,7 @@ Button/styles/disabled = SubResource("StyleBoxFlat_w38gy")
 Button/styles/focus = SubResource("StyleBoxFlat_qsdm3")
 Button/styles/hover = SubResource("StyleBoxFlat_7luci")
 Button/styles/normal = SubResource("StyleBoxFlat_c7ajh")
-Button/styles/pressed = SubResource("StyleBoxFlat_ckvnd")
+Button/styles/pressed = SubResource("StyleBoxFlat_qed0x")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_s4cy0")
 CheckButton/styles/pressed = SubResource("StyleBoxFlat_s5d82")
 HSlider/icons/grabber = ExtResource("1_nu7sq")
@@ -1037,9 +1055,12 @@ Label/styles/normal = SubResource("StyleBoxFlat_o35sh")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_frrr1")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_wstfi")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_wu6ag")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_ckvnd")
 Panel/styles/panel = SubResource("StyleBoxFlat_gfvsb")
+PopupMenu/constants/v_separation = 20
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_vinun")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_mqhuk")
+PopupPanel/styles/panel = SubResource("StyleBoxEmpty_qed0x")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_gdsm7")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_rhqdb")
 TextEdit/styles/focus = SubResource("StyleBoxFlat_8m04g")

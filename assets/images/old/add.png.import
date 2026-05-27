@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds0pxqsluapck"
-path="res://.godot/imported/swap.png-e267dc71888e90639e9a85f47a2b4484.ctex"
+uid="uid://ccj81pva5ntxt"
+path="res://.godot/imported/add.png-1f500bf7d7fa1498d5d831f81b82fe5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/swap.png"
-dest_files=["res://.godot/imported/swap.png-e267dc71888e90639e9a85f47a2b4484.ctex"]
+source_file="res://assets/images/old/add.png"
+dest_files=["res://.godot/imported/add.png-1f500bf7d7fa1498d5d831f81b82fe5c.ctex"]
 
 [params]
 

@@ -67,8 +67,9 @@ func _on_add_button_pressed():
 
 
 func _on_close_button_pressed():
+	for wp in $Wordpairs.get_children():
+		wp.queue_free()
 	file_manager.file_closed(self)
-	queue_free()
 	
 func pair_removed(pair):
 	changed = true

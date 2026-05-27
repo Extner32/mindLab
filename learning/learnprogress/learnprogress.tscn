@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dh3oj7d0msc5h"]
+
+[ext_resource type="Script" uid="uid://b3gx4xptm0jw6" path="res://learning/learnprogress/learnprogress.gd" id="1_cqhox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hpg5e"]
+
+[node name="LearnProgress" type="HBoxContainer" unique_id=1453592593]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_cqhox")
+
+[node name="Bars" type="HBoxContainer" parent="." unique_id=869224040]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="." unique_id=1708459452]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hpg5e")
+text = "l/t"
+horizontal_alignment = 1
+vertical_alignment = 1

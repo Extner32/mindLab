@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://6yuk1qnvfge0"]
+[gd_scene format=3 uid="uid://6yuk1qnvfge0"]
 
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_7tyyd"]
 [ext_resource type="Script" uid="uid://hatdcu6h5jfl" path="res://main.gd" id="1_ip5id"]
 [ext_resource type="PackedScene" uid="uid://cuf8vatop611e" path="res://file manager/file_manager.tscn" id="2_abvjp"]
 [ext_resource type="PackedScene" uid="uid://coo8e5vjcprxg" path="res://learning/learning.tscn" id="3_ktrdd"]
-[ext_resource type="Texture2D" uid="uid://syym5i27ajxj" path="res://assets/images/save_icon.png" id="5_0n1y7"]
-[ext_resource type="Texture2D" uid="uid://daxxcyqsadxn0" path="res://assets/images/switch.png" id="5_c45ke"]
+[ext_resource type="Texture2D" uid="uid://4q4k5hprsca8" path="res://assets/images/Save.svg" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://ccfl34q7crsuj" path="res://assets/images/Play.svg" id="6_272bh"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_272bh"]
 device = -1
@@ -57,7 +57,7 @@ unicode = 119
 [sub_resource type="Shortcut" id="Shortcut_efxa6"]
 events = [SubResource("InputEventKey_4c57u")]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" unique_id=564979421]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,11 +67,11 @@ grow_vertical = 2
 theme = ExtResource("1_7tyyd")
 script = ExtResource("1_ip5id")
 
-[node name="SaveTimer" type="Timer" parent="."]
+[node name="SaveTimer" type="Timer" parent="." unique_id=1448121710]
 wait_time = 5.0
 autostart = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=664571063]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -83,43 +83,43 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1852632326]
 layout_mode = 2
 
-[node name="FileManager" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_abvjp")]
+[node name="FileManager" parent="MarginContainer/VBoxContainer" unique_id=1070078219 instance=ExtResource("2_abvjp")]
 layout_mode = 2
 
-[node name="Learning" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("file_manager") instance=ExtResource("3_ktrdd")]
+[node name="Learning" parent="MarginContainer/VBoxContainer" unique_id=1928051210 node_paths=PackedStringArray("file_manager") instance=ExtResource("3_ktrdd")]
 visible = false
 layout_mode = 2
 file_manager = NodePath("../FileManager")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1828246082]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.0
 
-[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SaveButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=894416749]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 shortcut = SubResource("Shortcut_5vw27")
 text = "Save"
-icon = ExtResource("5_0n1y7")
+icon = ExtResource("5_7mycd")
 
-[node name="NewFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="NewFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1687837881]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 shortcut = SubResource("Shortcut_272bh")
 text = "New"
 
-[node name="OpenFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="OpenFileButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2366916]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 shortcut = SubResource("Shortcut_kek77")
 text = "Open"
 
-[node name="StatusText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="StatusText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=6464583]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -129,17 +129,20 @@ scroll_active = false
 autowrap_mode = 0
 vertical_alignment = 1
 
-[node name="SwitchModeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SwitchModeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=882140064]
 custom_minimum_size = Vector2(42, 42)
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_7mycd")
 shortcut = SubResource("Shortcut_efxa6")
-icon = ExtResource("5_c45ke")
+text = "Learn"
+icon = ExtResource("6_272bh")
 
 [connection signal="timeout" from="SaveTimer" to="." method="_on_save_timer_timeout"]
 [connection signal="files_changed" from="MarginContainer/VBoxContainer/FileManager" to="." method="_on_file_manager_files_changed"]
 [connection signal="files_changed" from="MarginContainer/VBoxContainer/FileManager" to="MarginContainer/VBoxContainer/Learning" method="_on_file_manager_files_changed"]
+[connection signal="files_edited" from="MarginContainer/VBoxContainer/FileManager" to="." method="_on_file_manager_files_edited"]
+[connection signal="files_edited" from="MarginContainer/VBoxContainer/FileManager" to="MarginContainer/VBoxContainer/Learning" method="_on_file_manager_files_edited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NewFileButton" to="." method="_on_new_file_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/OpenFileButton" to="." method="_on_open_file_button_pressed"]

@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuf8vatop611e"]
+[gd_scene format=3 uid="uid://cuf8vatop611e"]
 
 [ext_resource type="Script" uid="uid://ddaxrx16xpmgs" path="res://file manager/file_manager.gd" id="1_yk35e"]
 [ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="2_em32t"]
 
-[node name="FileManager" type="Control"]
+[node name="FileManager" type="Control" unique_id=941592848]
 process_mode = 1
 layout_mode = 3
 anchors_preset = 15
@@ -15,7 +15,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_yk35e")
 
-[node name="OpenFileDialog" type="FileDialog" parent="."]
+[node name="OpenFileDialog" type="FileDialog" parent="." unique_id=155906682]
 process_mode = 3
 title = "Open File(s)"
 initial_position = 2
@@ -27,7 +27,7 @@ access = 2
 filters = PackedStringArray("*.mLab")
 use_native_dialog = true
 
-[node name="SaveFileDialog" type="FileDialog" parent="."]
+[node name="SaveFileDialog" type="FileDialog" parent="." unique_id=14538627]
 process_mode = 3
 title = "New File"
 initial_position = 2
@@ -37,13 +37,13 @@ access = 2
 filters = PackedStringArray("*.mLab")
 use_native_dialog = true
 
-[node name="FileOpenedDialog" type="AcceptDialog" parent="."]
+[node name="FileOpenedDialog" type="AcceptDialog" parent="." unique_id=193777774]
 initial_position = 2
 size = Vector2i(237, 100)
 theme = ExtResource("2_em32t")
 dialog_text = "File is already opened!"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1908827568]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +51,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OpenedFiles" type="VBoxContainer" parent="ScrollContainer"]
+[node name="OpenedFiles" type="VBoxContainer" parent="ScrollContainer" unique_id=732219232]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

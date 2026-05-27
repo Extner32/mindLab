@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b1dfg5tuctm0o"]
+
+[ext_resource type="Theme" uid="uid://bgr3x6jwhynme" path="res://themes/dark_theme.tres" id="1_jwa0w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwa0w"]
+bg_color = Color(0.2, 0.2, 0.227451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ighht"]
+bg_color = Color(0.2, 0.741176, 0.470588, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="CorrectBar" type="ProgressBar" unique_id=938524486]
+custom_minimum_size = Vector2(0, 10)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_jwa0w")
+theme_override_styles/background = SubResource("StyleBoxFlat_jwa0w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ighht")
+step = 1.0
+show_percentage = false

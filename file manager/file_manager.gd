@@ -6,11 +6,10 @@ var save_file_path = ""
 
 var opened_files_names = []
 
-
-
 @onready var opened_files = $ScrollContainer/OpenedFiles
 
 signal files_changed
+signal files_edited
 
 func _ready():
 	$OpenFileDialog.hide()
@@ -21,8 +20,9 @@ func _process(delta):
 	for wordfile in opened_files.get_children():
 		if wordfile.focused_pair != null:
 			$ScrollContainer.ensure_control_visible(wordfile.focused_pair)
-	
-func check_files_changed():
+
+##only checks for edits in files
+func check_files_edited():
 	var changed = false
 	for wordfile in opened_files.get_children():
 		if wordfile.changed == true:
@@ -30,17 +30,17 @@ func check_files_changed():
 			wordfile.changed = false
 	
 	if changed:
-		files_changed.emit()
+		files_edited.emit()
 	
 	return changed
+	
 	
 func open_filedialog():
 	$OpenFileDialog.file_mode = 1
 	
 	if OS.has_feature("android"):
 		$OpenFileDialog.root_subfolder = gb.ANDROID_ROOT_SUBFOLDER
-	else:
-		$OpenFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
+
 	
 	$OpenFileDialog.show()
 		
@@ -54,7 +54,7 @@ func save_filedialog():
 	if OS.has_feature("android"):
 		$SaveFileDialog.root_subfolder = gb.ANDROID_ROOT_SUBFOLDER
 	else:
-		$SaveFileDialog.current_dir = UserSettings.dict["last_opened_dir"]
+		$SaveFileDialog.current_dir = "user://"
 	
 	$SaveFileDialog.show()
 		
@@ -91,7 +91,6 @@ func new_file():
 	opened_files_names.append(wordsfile.path)
 	
 	save_file(wordsfile)
-	UserSettings.dict["last_opened_dir"] = save_file_path
 	files_changed.emit()
 
 func open_file(filepath, collapsed=false):
@@ -143,7 +142,7 @@ func save_all_files():
 		save_file(file)
 
 func autosave():
-	if UserSettings.dict["autosave"]:
+	if UserSettings.res.autosave:
 		#vvv this is super annoying
 		#gb.status("[color="+UserSettings.correct_hex+"]autosaved[/color]")
 		save_all_files()
@@ -155,9 +154,11 @@ func open_files():
 			$FileOpenedDialog.show()
 		else:
 			open_file(filepath, bool(len(filepaths)-1))
-			UserSettings.dict["last_opened_dir"] = filepath
+	
+	files_changed.emit()
 
 
 func file_closed(file):
 	opened_files_names.erase(file.path)
+	file.queue_free()
 	files_changed.emit()

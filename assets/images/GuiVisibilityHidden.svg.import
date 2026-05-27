@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds0pxqsluapck"
-path="res://.godot/imported/swap.png-e267dc71888e90639e9a85f47a2b4484.ctex"
+uid="uid://dhxyluioi6xrr"
+path="res://.godot/imported/GuiVisibilityHidden.svg-9231f23ff8bfefb94dca2a15f24a7700.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/swap.png"
-dest_files=["res://.godot/imported/swap.png-e267dc71888e90639e9a85f47a2b4484.ctex"]
+source_file="res://assets/images/GuiVisibilityHidden.svg"
+dest_files=["res://.godot/imported/GuiVisibilityHidden.svg-9231f23ff8bfefb94dca2a15f24a7700.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
